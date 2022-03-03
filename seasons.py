@@ -110,7 +110,7 @@ def displaySeasonTeamStats(season, season_dict):
 # displaySeasonTeamStats("EPL Season 12-13", season_1213)
 # displaySeasonTeamStats("EPL Season 13-14", season_1314)
 # displaySeasonTeamStats("EPL Season 14-15", season_1415)
-# displaySeasonTeamStats("EPL Season 15-16", season_1516)
+displaySeasonTeamStats("EPL Season 15-16", season_1516)
 # displaySeasonTeamStats("EPL Season 16-17", season_1617)
 # displaySeasonTeamStats("EPL Season 17-18", season_1718)
 # displaySeasonTeamStats("EPL Season 18-19", season_1819)
@@ -148,9 +148,21 @@ def displaySeasonsTop(seasons_top):
 		print(seasons_top[i][0], '| {0:15s} | {1}'.format(seasons_top[i][1], seasons_top[i][2]))
 		print("-"*55)
 
-displaySeasonsTop(seasons_top)
+# displaySeasonsTop(seasons_top)
 
 # Function to compare each season's league winner to each season's team with the highest goal average
+season_winners = { 
+	"EPL Season 09-10" : "Chelsea",
+	"EPL Season 10-11" : "Man United",
+	"EPL Season 11-12" : "Man City",
+	"EPL Season 12-13" : "Man United",
+	"EPL Season 13-14" : "Man City",
+	"EPL Season 14-15" : "Chelsea",
+	"EPL Season 15-16" : "Leicester",
+	"EPL Season 16-17" : "Chelsea",
+	"EPL Season 17-18" : "Man City",
+	"EPL Season 18-19" : "Man City",
 
+}
 
 
