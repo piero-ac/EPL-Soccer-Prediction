@@ -59,62 +59,69 @@ season_1617 = createSeasonTeamsDict(teams_1617)
 season_1718 = createSeasonTeamsDict(teams_1718)
 season_1819 = createSeasonTeamsDict(teams_1819)
 
-# Function to traverse the csv files, getting each team's total number
-# goals, number of games, and goal average for the season
-# def readCSVSeasonData(df, df_length, season_dict):
-# 	for i in range(df_length):
-# 		home_team = df.iat[i,1] #Get the name of the home team
-# 		away_team = df.iat[i,2] #Get the name of the away team
-# 		home_team_goals = df.iat[i,3] #Get the home team's # of goals
-# 		away_team_goals = df.iat[i,4] #Get the away team's # of goals
+# Function to traverse the passed season's dataframe
+# Get each season's match stats for home team and away team
+def readSeasonDataFrame(df, df_length, season_dict):
 
-# 		season_dict[home_team]["number_of_goals"] += home_team_goals
-# 		season_dict[home_team]["number_of_games"] += 1
-# 		season_dict[away_team]["number_of_goals"] += away_team_goals
-# 		season_dict[away_team]["number_of_games"] += 1
-# 		season_dict[home_team]["goal_average"] = season_dict[home_team]["number_of_goals"] / season_dict[home_team]["number_of_games"]
-# 		season_dict[away_team]["goal_average"] = season_dict[away_team]["number_of_goals"] / season_dict[away_team]["number_of_games"]
+	for i in range(df_length):
+		home_team = df.iat[i,1] #Get the name of the home team
+		away_team = df.iat[i,2] #Get the name of the away team
+		home_goals = df.iat[i,3] #home team's # of goals scored, away team's # of goals conceded
+		away_goals = df.iat[i,4] #away team's # of goals scored, home team's # of goals conceded
 
-# Step 4 - Fill the season dict with the each team's number of goals
-# number of games, and goal average
-# readCSVSeasonData(df_0910, len(df_0910), season_0910)
-# readCSVSeasonData(df_1011, len(df_1011), season_1011)
-# readCSVSeasonData(df_1112, len(df_1112), season_1112)
-# readCSVSeasonData(df_1213, len(df_1213), season_1213)
-# readCSVSeasonData(df_1314, len(df_1314), season_1314)
-# readCSVSeasonData(df_1415, len(df_1415), season_1415)
-# readCSVSeasonData(df_1516, len(df_1516), season_1516)
-# readCSVSeasonData(df_1617, len(df_1617), season_1617)
-# readCSVSeasonData(df_1718, len(df_1718), season_1718)
-# readCSVSeasonData(df_1819, len(df_1819), season_1819)
+		#Update home team's stats
+		season_dict[home_team]["goals_conceded"] += away_goals
+		season_dict[home_team]["goals_scored"] += home_goals
+		season_dict[home_team]["number_of_games"] += 1
+		season_dict[home_team]["goal_average"] = season_dict[home_team]["goals_scored"] / season_dict[home_team]["goals_conceded"]
+
+		#Update away team's stats
+		season_dict[away_team]["goals_conceded"] += home_goals
+		season_dict[away_team]["goals_scored"] += away_goals
+		season_dict[away_team]["number_of_games"] += 1
+
+	#Calculate each team's goal average
+	for key in season_dict.keys():
+		season_dict[key]["goal_average"] = season_dict[key]["goals_scored"] / season_dict[key]["goals_conceded"]
 
 
 # Function to print the number of goals, number of games, and goal average
 # of each team in the season
-# def displaySeasonTeamStats(season, season_dict):
-# 	print("-"*110)
-# 	print(" "*45, season)
-# 	print("-"*110)
-# 	for i in season_dict.keys():
-# 		team_name = i
-# 		number_of_goals = season_dict[i]['number_of_goals']
-# 		number_of_games = season_dict[i]['number_of_games']
-# 		goal_average = season_dict[i]['goal_average']
-# 		output = 'Team: {0:15s} | Total # of Goals: {1:5d} | Total # of Games: {2:5d} | Goal Average: {3}'.format(team_name, number_of_goals, number_of_games, goal_average)
-# 		print(output)
-# 		print("-"*110)
+def displaySeasonTeamStats(season, season_dict):
+	print("")
+	print("-"*110)
+	print(" "*45, season)
+	print("-"*110)
+	for key in season_dict.keys():
+		goals_scored = season_dict[key]["goals_scored"]
+		goals_conceded = season_dict[key]["goals_conceded"]
+		number_of_games = season_dict[key]['number_of_games']
+		goal_average = season_dict[key]["goal_average"]
+		print('Team: {0:15s} | Goals Scored: {1:5d} | Goals Conceded: {2:5d} | Games Played: {3:5d} | Goal Average: {4}'.format(key, goals_scored, goals_conceded, number_of_games, goal_average))
+		print("-"*110)
 
-# Step 5 - Display Each Team's Stats for the Season
-# displaySeasonTeamStats("EPL Season 09-10", season_0910)
-# displaySeasonTeamStats("EPL Season 10-11", season_1011) 
-# displaySeasonTeamStats("EPL Season 11-12", season_1112)
-# displaySeasonTeamStats("EPL Season 12-13", season_1213)
-# displaySeasonTeamStats("EPL Season 13-14", season_1314)
-# displaySeasonTeamStats("EPL Season 14-15", season_1415)
-# displaySeasonTeamStats("EPL Season 15-16", season_1516)
-# displaySeasonTeamStats("EPL Season 16-17", season_1617)
-# displaySeasonTeamStats("EPL Season 17-18", season_1718)
-# displaySeasonTeamStats("EPL Season 18-19", season_1819)
+# Step 4 - Fill the season dict with the each team's number of goals
+# number of games, and goal average
+readSeasonDataFrame(df_0910, len(df_0910), season_0910) # Season 09-10
+displaySeasonTeamStats("EPL Season 09-10", season_0910)
+readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Season 10-11
+displaySeasonTeamStats("EPL Season 10-11", season_1011) 
+readSeasonDataFrame(df_1112, len(df_1112), season_1112) # Season 11-12
+displaySeasonTeamStats("EPL Season 11-12", season_1112)
+readSeasonDataFrame(df_1213, len(df_1213), season_1213) # Season 12-13
+displaySeasonTeamStats("EPL Season 12-13", season_1213)
+readSeasonDataFrame(df_1314, len(df_1314), season_1314) # Season 13-14
+displaySeasonTeamStats("EPL Season 13-14", season_1314)
+readSeasonDataFrame(df_1415, len(df_1415), season_1415) # Season 14-15
+displaySeasonTeamStats("EPL Season 14-15", season_1415)
+readSeasonDataFrame(df_1516, len(df_1516), season_1516) # Season 15-16
+displaySeasonTeamStats("EPL Season 15-16", season_1516)
+readSeasonDataFrame(df_1617, len(df_1617), season_1617) # Season 16-17
+displaySeasonTeamStats("EPL Season 16-17", season_1617)
+readSeasonDataFrame(df_1718, len(df_1718), season_1718) # Season 17-18
+displaySeasonTeamStats("EPL Season 17-18", season_1718)
+readSeasonDataFrame(df_1819, len(df_1819), season_1819) # Season 18-19
+displaySeasonTeamStats("EPL Season 18-19", season_1819)
 
 # Function to find team with the highest goal average in the season
 # def findHighestGoalAverage(season, season_dict):
