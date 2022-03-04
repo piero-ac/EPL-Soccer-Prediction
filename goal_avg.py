@@ -1,6 +1,6 @@
 # Project #1 
 # EPL Seasons 09-10 to 18-19
-# Goal Average - the number of goals divided by the number of goals conceded
+# Goal Average - the number of goals scored divided by the number of goals conceded
 
 import pandas as pd
 
