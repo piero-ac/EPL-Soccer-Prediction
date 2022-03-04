@@ -146,9 +146,9 @@ season_0910_sorted = sortByAvgGoalsPerGame(season_0910) # Sort EPL Season 09-10 
 
 # EPL Season 10-11
 season_1011 = readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Fill EPL Season 10-11 With Data of Each Team
-displaySeasonStats("EPL Season 10-11", season_1011) # Print the Data of the Teams that played in EPL Season 10-11
+# displaySeasonStats("EPL Season 10-11", season_1011) # Print the Data of the Teams that played in EPL Season 10-11
 season_1011_sorted = sortByAvgGoalsPerGame(season_1011) # Sort EPL Season 10-11 Teams by avg. goal per game and goal difference
-displaySeasonStats("EPL Season 10-11", season_1011_sorted) # Print the Sorted EPL Season 10-11 Dictionary
+# displaySeasonStats("EPL Season 10-11", season_1011_sorted) # Print the Sorted EPL Season 10-11 Dictionary
 
 # EPL Season 11-12
 season_1112 = readSeasonDataFrame(df_1112, len(df_1112), season_1112) # Fill EPL Season 11-12 With Data of Each Team
