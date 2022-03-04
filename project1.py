@@ -47,7 +47,15 @@ teams_1819 = createTeamNamesList(df_1819, len(df_1819)) #Season 1819
 def createSeasonTeamsDict(team_list):
 	season_dict = {}
 	for i in range(20):
-		season_dict[team_list[i]] = {"goals_scored" : 0, "games_played" : 0, "goal_average_actual" : 0, "goal_average_rounded" : 0}
+		season_dict[team_list[i]] = {
+			"goals_scored" : 0,
+			"goals_conceded" : 0,
+			"games_played" : 0,
+			"goal_average_actual" : 0,
+			"goal_average_rounded" : 0,
+			"goal_difference": 0
+		}
+
 	return season_dict
 
 # Step 3 - Fill the dictionaries of the teams that played in each season
@@ -68,21 +76,25 @@ def readSeasonDataFrame(df, df_length, season_dict):
 	for i in range(df_length):
 		home_team = df.iat[i,1] #Get the name of the home team
 		away_team = df.iat[i,2] #Get the name of the away team
-		home_goals = df.iat[i,3] #Get the home team's # of goals
-		away_goals = df.iat[i,4] #Get the away team's # of goals
+		home_goals = df.iat[i,3] #Get the home team's # of goals scored, away team's # of goals conceded
+		away_goals = df.iat[i,4] #Get the away team's # of goals, home team's # of goals conceded
 
 		#Update home team's stats
 		season_dict[home_team]["goals_scored"] += home_goals
+		season_dict[home_team]["goals_conceded"] += away_goals
 		season_dict[home_team]["games_played"] += 1
 
 		#Update away team's stats
 		season_dict[away_team]["goals_scored"] += away_goals
+		season_dict[home_team]["goals_conceded"] += home_goals
 		season_dict[away_team]["games_played"] += 1
 
 	# Calculate each team's average goals per game (rounded) and actual
+	# Also each team's goal difference 
 	for key in season_dict.keys():
 		season_dict[key]["goal_average_rounded"] = round((season_dict[key]["goals_scored"] / season_dict[key]["games_played"]), 2)
 		season_dict[key]["goal_average_actual"] = season_dict[key]["goals_scored"] / season_dict[key]["games_played"]
+		season_dict[key]["goal_difference"] = season_dict[key]["goals_scored"] - season_dict[key]["goals_conceded"]
 
 # Function to print the the stats of the teams that played in the season
 def displaySeasonTeamStats(season, season_dict):
@@ -112,8 +124,8 @@ def sortByAvgGoalsPerGame(season_dict):
 # Step 4 - Fill each season's dictionary with each team's 
 # number of goals, number of games, and goal average
 readSeasonDataFrame(df_0910, len(df_0910), season_0910) # Season 09-10
-displaySeasonTeamStats("EPL Season 09-10", season_0910) # Before Sorting by Avg. Goals Per Game (Descending Order)
-displaySeasonTeamStats("EPL Season 09-10", sortByAvgGoalsPerGame(season_0910)) # Print the Sorted Dicitonary
+# displaySeasonTeamStats("EPL Season 09-10", season_0910) # Before Sorting by Avg. Goals Per Game (Descending Order)
+# displaySeasonTeamStats("EPL Season 09-10", sortByAvgGoalsPerGame(season_0910)) # Print the Sorted Dicitonary
 # displaySeasonTeamStats("EPL Season 09-10", season_0910) # Before Sorting by Avg. Goals Per Game (Descending Order)
 readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Season 10-11
 # displaySeasonTeamStats("EPL Season 10-11", season_1011) 
