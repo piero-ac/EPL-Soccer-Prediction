@@ -110,7 +110,7 @@ def displaySeasonTeamStats(season, season_dict):
 # displaySeasonTeamStats("EPL Season 12-13", season_1213)
 # displaySeasonTeamStats("EPL Season 13-14", season_1314)
 # displaySeasonTeamStats("EPL Season 14-15", season_1415)
-displaySeasonTeamStats("EPL Season 15-16", season_1516)
+# displaySeasonTeamStats("EPL Season 15-16", season_1516)
 # displaySeasonTeamStats("EPL Season 16-17", season_1617)
 # displaySeasonTeamStats("EPL Season 17-18", season_1718)
 # displaySeasonTeamStats("EPL Season 18-19", season_1819)
@@ -148,21 +148,41 @@ def displaySeasonsTop(seasons_top):
 		print(seasons_top[i][0], '| {0:15s} | {1}'.format(seasons_top[i][1], seasons_top[i][2]))
 		print("-"*55)
 
-# displaySeasonsTop(seasons_top)
+displaySeasonsTop(seasons_top)
 
 # Function to compare each season's league winner to each season's team with the highest goal average
-season_winners = { 
-	"EPL Season 09-10" : "Chelsea",
-	"EPL Season 10-11" : "Man United",
-	"EPL Season 11-12" : "Man City",
-	"EPL Season 12-13" : "Man United",
-	"EPL Season 13-14" : "Man City",
-	"EPL Season 14-15" : "Chelsea",
-	"EPL Season 15-16" : "Leicester",
-	"EPL Season 16-17" : "Chelsea",
-	"EPL Season 17-18" : "Man City",
-	"EPL Season 18-19" : "Man City",
 
-}
+def comparison(seasons_top):
+	season_winners = { 
+		"EPL Season 09-10" : "Chelsea",
+		"EPL Season 10-11" : "Man United",
+		"EPL Season 11-12" : "Man City",
+		"EPL Season 12-13" : "Man United",
+		"EPL Season 13-14" : "Man City",
+		"EPL Season 14-15" : "Chelsea",
+		"EPL Season 15-16" : "Leicester",
+		"EPL Season 16-17" : "Chelsea",
+		"EPL Season 17-18" : "Man City",
+		"EPL Season 18-19" : "Man City",
+	}
+
+	key_list = list(season_winners.keys())
+	for i in range(len(seasons_top)):
+		season = key_list[i] # Store the season
+		winning_team = season_winners[season] # Season's Winning Team
+		seasons_team_highest = seasons_top[i][1] # Team with Season's Highest Goal Average
+		seasons_team_highest_goalavg = seasons_top[i][2] # Team's Goal Average
+
+		# The winning team of the season also had the highest goal average
+		if winning_team == seasons_team_highest:
+			print('{0:15s} won the {1:16s} and had the highest goal average of the season with {2} goals per game.'.format(winning_team, season, seasons_team_highest_goalavg))
+		# The winning team of the season and the team with the highest goal average were different
+		else:
+			print('{0:15s} won the {1:16s} and {2:15s} had the highest goal average of the season with {3} goals per game.'.format(winning_team, season, seasons_team_highest, seasons_team_highest_goalavg))
+
+
+comparison(seasons_top)
+
+
 
 
