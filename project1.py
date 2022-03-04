@@ -86,7 +86,7 @@ def readSeasonDataFrame(df, df_length, season_dict):
 
 		#Update away team's stats
 		season_dict[away_team]["goals_scored"] += away_goals
-		season_dict[home_team]["goals_conceded"] += home_goals
+		season_dict[away_team]["goals_conceded"] += home_goals
 		season_dict[away_team]["games_played"] += 1
 
 	# Calculate each team's average goals per game (rounded) and actual
@@ -99,24 +99,42 @@ def readSeasonDataFrame(df, df_length, season_dict):
 # Function to print the the stats of the teams that played in the season
 def displaySeasonTeamStats(season, season_dict):
 	print("")
-	print("-"*95)
-	print("|" ," "*37, season, " " *36, "|")
-	print("-"*95)
-	print('| TEAM', " " * 10, "| GOALS SCORED | GAMES PLAYED |", " " * 11, "AVG. GOALS PER GAME", " " * 11, "|")
-	print("-"*95)
+	print("-"*130)
+	print("|" ," "*37, season, " " *71, "|")
+	print("-"*130)
+	print('| TEAM', " " * 10, "| GOALS SCORED | GOALS CONCEDED | GAMES PLAYED |", " " * 11, "AVG. GOALS PER GAME", " " * 11, "| GOAL DIFFERENCE |")
+	print("-"*130)
 	for key in season_dict.keys():
 		goals_scored = season_dict[key]["goals_scored"]
+		goals_conceded = season_dict[key]["goals_conceded"]
 		games_played = season_dict[key]["games_played"]
 		goal_average_actual = season_dict[key]["goal_average_actual"]
 		goal_average_rounded = season_dict[key]["goal_average_rounded"]
-		print('| {0:15s} | {1:12d} | {2:12d} | Rounded: {3:.2f} - Actual: {4:.16f}  |'.format(key, goals_scored, games_played, goal_average_rounded, goal_average_actual))
-		print("-"*95)
+		goal_difference = season_dict[key]["goal_difference"]
+		goal_difference_str = ""
+
+		if goal_difference >= 0:
+			goal_difference_str = "+" + str(goal_difference)
+		else:
+			goal_difference_str = str(goal_difference)
+		print('| {0:15s} | {1:12d} |  {2:13d} | {3:12d} | Rounded: {4:.2f} - Actual: {5:.16f}  | {6:15s} |'.format(key, goals_scored, goals_conceded, games_played, goal_average_rounded, goal_average_actual, goal_difference_str))
+		print("-"*130)
 
 # Function to sort the team's by avg. goals per game (descending order)
 def sortByAvgGoalsPerGame(season_dict):
 	# Create a deep copy of the season_dict
 	copy_dict = copy.deepcopy(season_dict)
-	sorted_dict = dict(sorted(copy_dict.items(), key = lambda x: x[1]["goal_average_actual"], reverse=True))
+	# Sort by avg. goals per game
+	# However, if two or more teams have the same avg. goals per game, then
+	# sort by goal difference (if positive or 0 g.d, higher is better. if negative g.d, lower is better)
+
+	# First, sort teams avg. goals per game
+	# sorted_dict = dict(sorted(copy_dict.items(), key = lambda x: x[1]["goal_average_actual"], reverse=True))
+
+	# Second, sort teams by goal difference if teams have same avg. goals per game
+	#sorted_dict = dict(sorted(sorted_dict.items(), key = lambda x: x[1]["goal_difference"], reverse=True))
+
+	sorted_dict = dict(sorted(copy_dict.items(), key=lambda k: (k[1]["goal_average_actual"], k[1]["goal_difference"]), reverse=True))
 
 	return sorted_dict
 
@@ -124,9 +142,8 @@ def sortByAvgGoalsPerGame(season_dict):
 # Step 4 - Fill each season's dictionary with each team's 
 # number of goals, number of games, and goal average
 readSeasonDataFrame(df_0910, len(df_0910), season_0910) # Season 09-10
-# displaySeasonTeamStats("EPL Season 09-10", season_0910) # Before Sorting by Avg. Goals Per Game (Descending Order)
-# displaySeasonTeamStats("EPL Season 09-10", sortByAvgGoalsPerGame(season_0910)) # Print the Sorted Dicitonary
-# displaySeasonTeamStats("EPL Season 09-10", season_0910) # Before Sorting by Avg. Goals Per Game (Descending Order)
+displaySeasonTeamStats("EPL Season 09-10", season_0910) # Before Sorting by Avg. Goals Per Game (Descending Order)
+displaySeasonTeamStats("EPL Season 09-10", sortByAvgGoalsPerGame(season_0910)) # Print the Sorted Dicitonary
 readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Season 10-11
 # displaySeasonTeamStats("EPL Season 10-11", season_1011) 
 readSeasonDataFrame(df_1112, len(df_1112), season_1112) # Season 11-12
