@@ -100,9 +100,10 @@ def readSeasonDataFrame(df, df_length, season_dict):
 def displaySeasonTeamStats(season, season_dict):
 	print("")
 	print("-"*130)
-	print("|" ," "*37, season, " " *71, "|")
+	print("|" ," "*54, season, " " *54, "|")
 	print("-"*130)
-	print('| TEAM', " " * 10, "| GOALS SCORED | GOALS CONCEDED | GAMES PLAYED |", " " * 11, "AVG. GOALS PER GAME", " " * 11, "| GOAL DIFFERENCE |")
+	print("| TEAM", " " * 10, "| GOALS SCORED | GOALS CONCEDED | GAMES PLAYED |", " " * 11, "AVG. GOALS PER GAME", " " * 11, "| GOAL DIFFERENCE |")
+	print("|", " " * 15, "| G.S. ", " " * 6, "| G.C ", " " * 9, "| G.P ", " " * 7, "|", " " * 13, " AVG = G.S/G.P ", " " * 13, "| GD = G.S - G.C  |" )
 	print("-"*130)
 	for key in season_dict.keys():
 		goals_scored = season_dict[key]["goals_scored"]
@@ -124,16 +125,9 @@ def displaySeasonTeamStats(season, season_dict):
 def sortByAvgGoalsPerGame(season_dict):
 	# Create a deep copy of the season_dict
 	copy_dict = copy.deepcopy(season_dict)
-	# Sort by avg. goals per game
-	# However, if two or more teams have the same avg. goals per game, then
-	# sort by goal difference (if positive or 0 g.d, higher is better. if negative g.d, lower is better)
 
-	# First, sort teams avg. goals per game
-	# sorted_dict = dict(sorted(copy_dict.items(), key = lambda x: x[1]["goal_average_actual"], reverse=True))
-
-	# Second, sort teams by goal difference if teams have same avg. goals per game
-	#sorted_dict = dict(sorted(sorted_dict.items(), key = lambda x: x[1]["goal_difference"], reverse=True))
-
+	# First, sort teams by avg. goals per game
+	# Second, sort teams that have the same avg. goals per game by goal difference
 	sorted_dict = dict(sorted(copy_dict.items(), key=lambda k: (k[1]["goal_average_actual"], k[1]["goal_difference"]), reverse=True))
 
 	return sorted_dict
