@@ -123,34 +123,47 @@ readSeasonDataFrame(df_1819, len(df_1819), season_1819) # Season 18-19
 # Function to find team with the highest average goals per game in the season
 def findHighestGoalAverage(season, season_dict):
 	highest_team = ""
-	highest_goal_avg = 0
-	for team in season_dict.keys():
-		if season_dict[team]["goal_average"] > highest_goal_avg:
-			highest_goal_avg = season_dict[team]["goal_average"] #Save the current highest average goals per game
-			highest_team = team #Save the team with the current highest average goals per game
-	return [season, highest_team, highest_goal_avg]
+	highest_goal_avg_actual = 0
+	highest_goal_avg_rounded = 0
+	for key in season_dict.keys():
+		if season_dict[key]["goal_average_actual"] > highest_goal_avg_actual:
+			#Save the current highest average goals per game (actual)
+			highest_goal_avg_actual = season_dict[key]["goal_average_actual"]
+			#Save the current highest average goals per game (rounded) 
+			highest_goal_avg_rounded = season_dict[key]["goal_average_rounded"] 
+			#Save the team with the current highest average goals per game
+			highest_team = key
+
+	#Return a list with the each season's team with the highest average goals per game
+	return [season, highest_team, highest_goal_avg_actual, highest_goal_avg_rounded]
 
 # Function to display information of each season's team with the highest goal average
 def displaySeasonsTop(seasons_top):
-	print("-"*55)
-	print(" Each EPL Season's Team with the Highest Goal Average")
-	print("-"*55)
+	print("")
+	print("-"*56)
+	print("| Each EPL Season's Team with the Highest Goal Average |")
+	print("-"*56)
+	print("| EPL SEASON | TEAM", " " * 10, "| AVG. GOALS PER GAME ", " |")
+	print("-"*56)
 	for i in range(len(seasons_top)):
-		print(seasons_top[i][0], '| {0:15s} | {1}'.format(seasons_top[i][1], seasons_top[i][2]))
-		print("-"*55)
+		season = seasons_top[i][0]
+		team = seasons_top[i][1]
+		highest_goal_avg_rounded = seasons_top[i][3]
+		print("|", season, " " * 4 , '| {0:15s} | {1:.2f}'.format(team, highest_goal_avg_rounded), " " * 16, "|")
+		print("-"*56)
 
 # Step 5 - Create a List of Each Season's Team with the highest average goals per game
 seasons_top = []
-seasons_top.append(findHighestGoalAverage("EPL Season 09-10", season_0910))
-seasons_top.append(findHighestGoalAverage("EPL Season 10-11", season_1011))
-seasons_top.append(findHighestGoalAverage("EPL Season 11-12", season_1112))
-seasons_top.append(findHighestGoalAverage("EPL Season 12-13", season_1213))
-seasons_top.append(findHighestGoalAverage("EPL Season 13-14", season_1314))
-seasons_top.append(findHighestGoalAverage("EPL Season 14-15", season_1415))
-seasons_top.append(findHighestGoalAverage("EPL Season 15-16", season_1516))
-seasons_top.append(findHighestGoalAverage("EPL Season 16-17", season_1617))
-seasons_top.append(findHighestGoalAverage("EPL Season 17-18", season_1718))
-seasons_top.append(findHighestGoalAverage("EPL Season 18-19", season_1819))
+seasons_top.append(findHighestGoalAverage("09-10", season_0910))
+seasons_top.append(findHighestGoalAverage("10-11", season_1011))
+seasons_top.append(findHighestGoalAverage("11-12", season_1112))
+seasons_top.append(findHighestGoalAverage("12-13", season_1213))
+seasons_top.append(findHighestGoalAverage("13-14", season_1314))
+seasons_top.append(findHighestGoalAverage("14-15", season_1415))
+seasons_top.append(findHighestGoalAverage("15-16", season_1516))
+seasons_top.append(findHighestGoalAverage("16-17", season_1617))
+seasons_top.append(findHighestGoalAverage("17-18", season_1718))
+seasons_top.append(findHighestGoalAverage("18-19", season_1819))
 
 displaySeasonsTop(seasons_top)
 
