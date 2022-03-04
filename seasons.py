@@ -87,7 +87,7 @@ def displaySeasonTeamStats(season, season_dict):
 	print("-"*95)
 	print("|" ," "*37, season, " " *36, "|")
 	print("-"*95)
-	print('| Team', " " * 10, "| Goals Scored | Games Played |", " " * 9, "Average Goals Per Game", " " * 10, "|")
+	print('| TEAM', " " * 10, "| GOALS SCORED | GAMES PLAYED |", " " * 11, "AVG. GOALS PER GAME", " " * 11, "|")
 	print("-"*95)
 	for key in season_dict.keys():
 		goals_scored = season_dict[key]["goals_scored"]
@@ -165,7 +165,7 @@ seasons_top.append(findHighestGoalAverage("16-17", season_1617))
 seasons_top.append(findHighestGoalAverage("17-18", season_1718))
 seasons_top.append(findHighestGoalAverage("18-19", season_1819))
 
-displaySeasonsTop(seasons_top)
+# displaySeasonsTop(seasons_top)
 
 
 # Function to compare each season's league winner to each season's team with the highest goal average
