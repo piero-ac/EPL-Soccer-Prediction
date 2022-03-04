@@ -1,5 +1,6 @@
 # Project #1 
 # EPL Seasons 09-10 to 18-19
+# Goal Average - the number of goals divided by the number of goals conceded
 
 import pandas as pd
 
@@ -43,7 +44,7 @@ teams_1819 = createTeamNamesList(df_1819, len(df_1819)) #Season 1819
 def createSeasonTeamsDict(team_list):
 	season_dict = {}
 	for i in range(20):
-		season_dict[team_list[i]] = {"number_of_goals" : 0, "number_of_games" : 0, "goal_average" : 0}
+		season_dict[team_list[i]] = {"goals_conceded":0, "goals_scored":0, "number_of_games":0, "goal_average": 0}
 	return season_dict
 
 # Step 3 - Fill the dictionaries of the teams that played in each season
@@ -60,48 +61,48 @@ season_1819 = createSeasonTeamsDict(teams_1819)
 
 # Function to traverse the csv files, getting each team's total number
 # goals, number of games, and goal average for the season
-def readCSVSeasonData(df, df_length, season_dict):
-	for i in range(df_length):
-		home_team = df.iat[i,1] #Get the name of the home team
-		away_team = df.iat[i,2] #Get the name of the away team
-		home_team_goals = df.iat[i,3] #Get the home team's # of goals
-		away_team_goals = df.iat[i,4] #Get the away team's # of goals
+# def readCSVSeasonData(df, df_length, season_dict):
+# 	for i in range(df_length):
+# 		home_team = df.iat[i,1] #Get the name of the home team
+# 		away_team = df.iat[i,2] #Get the name of the away team
+# 		home_team_goals = df.iat[i,3] #Get the home team's # of goals
+# 		away_team_goals = df.iat[i,4] #Get the away team's # of goals
 
-		season_dict[home_team]["number_of_goals"] += home_team_goals
-		season_dict[home_team]["number_of_games"] += 1
-		season_dict[away_team]["number_of_goals"] += away_team_goals
-		season_dict[away_team]["number_of_games"] += 1
-		season_dict[home_team]["goal_average"] = season_dict[home_team]["number_of_goals"] / season_dict[home_team]["number_of_games"]
-		season_dict[away_team]["goal_average"] = season_dict[away_team]["number_of_goals"] / season_dict[away_team]["number_of_games"]
+# 		season_dict[home_team]["number_of_goals"] += home_team_goals
+# 		season_dict[home_team]["number_of_games"] += 1
+# 		season_dict[away_team]["number_of_goals"] += away_team_goals
+# 		season_dict[away_team]["number_of_games"] += 1
+# 		season_dict[home_team]["goal_average"] = season_dict[home_team]["number_of_goals"] / season_dict[home_team]["number_of_games"]
+# 		season_dict[away_team]["goal_average"] = season_dict[away_team]["number_of_goals"] / season_dict[away_team]["number_of_games"]
 
 # Step 4 - Fill the season dict with the each team's number of goals
 # number of games, and goal average
-readCSVSeasonData(df_0910, len(df_0910), season_0910)
-readCSVSeasonData(df_1011, len(df_1011), season_1011)
-readCSVSeasonData(df_1112, len(df_1112), season_1112)
-readCSVSeasonData(df_1213, len(df_1213), season_1213)
-readCSVSeasonData(df_1314, len(df_1314), season_1314)
-readCSVSeasonData(df_1415, len(df_1415), season_1415)
-readCSVSeasonData(df_1516, len(df_1516), season_1516)
-readCSVSeasonData(df_1617, len(df_1617), season_1617)
-readCSVSeasonData(df_1718, len(df_1718), season_1718)
-readCSVSeasonData(df_1819, len(df_1819), season_1819)
+# readCSVSeasonData(df_0910, len(df_0910), season_0910)
+# readCSVSeasonData(df_1011, len(df_1011), season_1011)
+# readCSVSeasonData(df_1112, len(df_1112), season_1112)
+# readCSVSeasonData(df_1213, len(df_1213), season_1213)
+# readCSVSeasonData(df_1314, len(df_1314), season_1314)
+# readCSVSeasonData(df_1415, len(df_1415), season_1415)
+# readCSVSeasonData(df_1516, len(df_1516), season_1516)
+# readCSVSeasonData(df_1617, len(df_1617), season_1617)
+# readCSVSeasonData(df_1718, len(df_1718), season_1718)
+# readCSVSeasonData(df_1819, len(df_1819), season_1819)
 
 
 # Function to print the number of goals, number of games, and goal average
 # of each team in the season
-def displaySeasonTeamStats(season, season_dict):
-	print("-"*110)
-	print(" "*45, season)
-	print("-"*110)
-	for i in season_dict.keys():
-		team_name = i
-		number_of_goals = season_dict[i]['number_of_goals']
-		number_of_games = season_dict[i]['number_of_games']
-		goal_average = season_dict[i]['goal_average']
-		output = 'Team: {0:15s} | Total # of Goals: {1:5d} | Total # of Games: {2:5d} | Goal Average: {3}'.format(team_name, number_of_goals, number_of_games, goal_average)
-		print(output)
-		print("-"*110)
+# def displaySeasonTeamStats(season, season_dict):
+# 	print("-"*110)
+# 	print(" "*45, season)
+# 	print("-"*110)
+# 	for i in season_dict.keys():
+# 		team_name = i
+# 		number_of_goals = season_dict[i]['number_of_goals']
+# 		number_of_games = season_dict[i]['number_of_games']
+# 		goal_average = season_dict[i]['goal_average']
+# 		output = 'Team: {0:15s} | Total # of Goals: {1:5d} | Total # of Games: {2:5d} | Goal Average: {3}'.format(team_name, number_of_goals, number_of_games, goal_average)
+# 		print(output)
+# 		print("-"*110)
 
 # Step 5 - Display Each Team's Stats for the Season
 # displaySeasonTeamStats("EPL Season 09-10", season_0910)
@@ -116,72 +117,72 @@ def displaySeasonTeamStats(season, season_dict):
 # displaySeasonTeamStats("EPL Season 18-19", season_1819)
 
 # Function to find team with the highest goal average in the season
-def findHighestGoalAverage(season, season_dict):
-	highest_team = ""
-	highest_goal_avg = 0
-	for team in season_dict.keys():
-		if season_dict[team]['goal_average'] > highest_goal_avg:
-			highest_goal_avg = season_dict[team]['goal_average'] #Save the current highest goal average
-			highest_team = team #Save the team with the current highest goal average
-	return [season, highest_team, highest_goal_avg]
+# def findHighestGoalAverage(season, season_dict):
+# 	highest_team = ""
+# 	highest_goal_avg = 0
+# 	for team in season_dict.keys():
+# 		if season_dict[team]['goal_average'] > highest_goal_avg:
+# 			highest_goal_avg = season_dict[team]['goal_average'] #Save the current highest goal average
+# 			highest_team = team #Save the team with the current highest goal average
+# 	return [season, highest_team, highest_goal_avg]
 
 # Step 6 - Create a List of Each Season's Team that had the highest goal average
-seasons_top = []
-seasons_top.append(findHighestGoalAverage("EPL Season 09-10", season_0910))
-seasons_top.append(findHighestGoalAverage("EPL Season 10-11", season_1011))
-seasons_top.append(findHighestGoalAverage("EPL Season 11-12", season_1112))
-seasons_top.append(findHighestGoalAverage("EPL Season 12-13", season_1213))
-seasons_top.append(findHighestGoalAverage("EPL Season 13-14", season_1314))
-seasons_top.append(findHighestGoalAverage("EPL Season 14-15", season_1415))
-seasons_top.append(findHighestGoalAverage("EPL Season 15-16", season_1516))
-seasons_top.append(findHighestGoalAverage("EPL Season 16-17", season_1617))
-seasons_top.append(findHighestGoalAverage("EPL Season 17-18", season_1718))
-seasons_top.append(findHighestGoalAverage("EPL Season 18-19", season_1819))
+# seasons_top = []
+# seasons_top.append(findHighestGoalAverage("EPL Season 09-10", season_0910))
+# seasons_top.append(findHighestGoalAverage("EPL Season 10-11", season_1011))
+# seasons_top.append(findHighestGoalAverage("EPL Season 11-12", season_1112))
+# seasons_top.append(findHighestGoalAverage("EPL Season 12-13", season_1213))
+# seasons_top.append(findHighestGoalAverage("EPL Season 13-14", season_1314))
+# seasons_top.append(findHighestGoalAverage("EPL Season 14-15", season_1415))
+# seasons_top.append(findHighestGoalAverage("EPL Season 15-16", season_1516))
+# seasons_top.append(findHighestGoalAverage("EPL Season 16-17", season_1617))
+# seasons_top.append(findHighestGoalAverage("EPL Season 17-18", season_1718))
+# seasons_top.append(findHighestGoalAverage("EPL Season 18-19", season_1819))
 
 
 # Function to display information of each season's team with the highest goal average
-def displaySeasonsTop(seasons_top):
-	print("-"*55)
-	print(" Each EPL Season's Team with the Highest Goal Average")
-	print("-"*55)
-	for i in range(len(seasons_top)):
-		print(seasons_top[i][0], '| {0:15s} | {1}'.format(seasons_top[i][1], seasons_top[i][2]))
-		print("-"*55)
+# def displaySeasonsTop(seasons_top):
+# 	print("-"*55)
+# 	print(" Each EPL Season's Team with the Highest Goal Average")
+# 	print("-"*55)
+# 	for i in range(len(seasons_top)):
+# 		print(seasons_top[i][0], '| {0:15s} | {1}'.format(seasons_top[i][1], seasons_top[i][2]))
+# 		print("-"*55)
 
-displaySeasonsTop(seasons_top)
+# displaySeasonsTop(seasons_top)
 
 # Function to compare each season's league winner to each season's team with the highest goal average
 
-def comparison(seasons_top):
-	season_winners = { 
-		"EPL Season 09-10" : "Chelsea",
-		"EPL Season 10-11" : "Man United",
-		"EPL Season 11-12" : "Man City",
-		"EPL Season 12-13" : "Man United",
-		"EPL Season 13-14" : "Man City",
-		"EPL Season 14-15" : "Chelsea",
-		"EPL Season 15-16" : "Leicester",
-		"EPL Season 16-17" : "Chelsea",
-		"EPL Season 17-18" : "Man City",
-		"EPL Season 18-19" : "Man City",
-	}
+# def comparison(seasons_top):
+# 	season_winners = { 
+# 		"EPL Season 09-10" : "Chelsea",
+# 		"EPL Season 10-11" : "Man United",
+# 		"EPL Season 11-12" : "Man City",
+# 		"EPL Season 12-13" : "Man United",
+# 		"EPL Season 13-14" : "Man City",
+# 		"EPL Season 14-15" : "Chelsea",
+# 		"EPL Season 15-16" : "Leicester",
+# 		"EPL Season 16-17" : "Chelsea",
+# 		"EPL Season 17-18" : "Man City",
+# 		"EPL Season 18-19" : "Man City",
+# 	}
 
-	key_list = list(season_winners.keys())
-	for i in range(len(seasons_top)):
-		season = key_list[i] # Store the season
-		winning_team = season_winners[season] # Season's Winning Team
-		seasons_team_highest = seasons_top[i][1] # Team with Season's Highest Goal Average
-		seasons_team_highest_goalavg = seasons_top[i][2] # Team's Goal Average
+# 	key_list = list(season_winners.keys())
+# 	for i in range(len(seasons_top)):
+# 		season = key_list[i] # Store the season
+# 		winning_team = season_winners[season] # Season's Winning Team
+# 		seasons_team_highest = seasons_top[i][1] # Team with Season's Highest Goal Average
+# 		seasons_team_highest_goalavg = seasons_top[i][2] # Team's Goal Average
 
-		# The winning team of the season also had the highest goal average
-		if winning_team == seasons_team_highest:
-			print('{0:15s} won the {1:16s} and had the highest goal average of the season with {2} goals per game.'.format(winning_team, season, seasons_team_highest_goalavg))
-		# The winning team of the season and the team with the highest goal average were different
-		else:
-			print('{0:15s} won the {1:16s} and {2:15s} had the highest goal average of the season with {3} goals per game.'.format(winning_team, season, seasons_team_highest, seasons_team_highest_goalavg))
+# 		# The winning team of the season also had the highest goal average
+# 		if winning_team == seasons_team_highest:
+# 			print('{0:15s} won the {1:16s} and had the highest goal average of the season with {2} goals per game.'.format(winning_team, season, seasons_team_highest_goalavg))
+# 		# The winning team of the season and the team with the highest goal average were different
+# 		else:
+# 			print('{0:15s} won the {1:16s} and {2:15s} had the highest goal average of the season with {3} goals per game.'.format(winning_team, season, seasons_team_highest, seasons_team_highest_goalavg))
 
 
-comparison(seasons_top)
+# comparison(seasons_top)
 
 
 
