@@ -38,9 +38,9 @@ teams_1718 = createTeamNamesList(df_1718, len(df_1718)) #Season 1718
 teams_1819 = createTeamNamesList(df_1819, len(df_1819)) #Season 1819
 
 
-# Function to create dictionaries for each season of the teams that played
-# in that season. In addition, iniliaze three stats for each team: number of goals,
-# number of games, and goal average.
+# Function to create dictionaries of the teams that played in each season. 
+# In addition, iniliaze four stats for each team: 
+# goals conceded, goals scored, number of games, and goal average.
 def createSeasonTeamsDict(team_list):
 	season_dict = {}
 	for i in range(20):
