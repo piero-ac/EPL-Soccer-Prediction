@@ -87,8 +87,8 @@ def displaySeasonTeamStats(season, season_dict):
 	print(" "*45, season)
 	print("-"*110)
 	for key in season_dict.keys():
-		number_of_goals = season_dict[key]["goals_scored"]
-		number_of_games = season_dict[key]["games_played"]
+		goals_scored = season_dict[key]["goals_scored"]
+		games_played = season_dict[key]["games_played"]
 		goal_average = season_dict[key]["goal_average"]
 		print('Team: {0:15s} | Goals Scored: {1:5d} | Games Played: {2:5d} | Avg Goals Per Game: {3}'.format(key, goals_scored, games_played, goal_average))
 		print("-"*110)
