@@ -82,18 +82,18 @@ def readSeasonDataFrame(df, df_length, season_dict):
 
 # Function to print the number of goals, number of games, and goal average
 # of each team in the season
-# def displaySeasonTeamStats(season, season_dict):
-# 	print("-"*110)
-# 	print(" "*45, season)
-# 	print("-"*110)
-# 	for i in season_dict.keys():
-# 		team_name = i
-# 		number_of_goals = season_dict[i]['number_of_goals']
-# 		number_of_games = season_dict[i]['number_of_games']
-# 		goal_average = season_dict[i]['goal_average']
-# 		output = 'Team: {0:15s} | Total # of Goals: {1:5d} | Total # of Games: {2:5d} | Goal Average: {3}'.format(team_name, number_of_goals, number_of_games, goal_average)
-# 		print(output)
-# 		print("-"*110)
+def displaySeasonTeamStats(season, season_dict):
+	print("-"*110)
+	print(" "*45, season)
+	print("-"*110)
+	for i in season_dict.keys():
+		team_name = i
+		number_of_goals = season_dict[i]['number_of_goals']
+		number_of_games = season_dict[i]['number_of_games']
+		goal_average = season_dict[i]['goal_average']
+		output = 'Team: {0:15s} | Total # of Goals: {1:5d} | Total # of Games: {2:5d} | Goal Average: {3}'.format(team_name, number_of_goals, number_of_games, goal_average)
+		print(output)
+		print("-"*110)
 
 # Step 4 - Fill the season dict with the each team's number of goals
 # number of games, and goal average
