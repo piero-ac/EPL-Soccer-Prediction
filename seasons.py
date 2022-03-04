@@ -44,7 +44,7 @@ teams_1819 = createTeamNamesList(df_1819, len(df_1819)) #Season 1819
 def createSeasonTeamsDict(team_list):
 	season_dict = {}
 	for i in range(20):
-		season_dict[team_list[i]] = {"goals_scored" : 0, "games_played" : 0, "goal_average" : 0}
+		season_dict[team_list[i]] = {"goals_scored" : 0, "games_played" : 0, "goal_average_actual" : 0, "goal_average_rounded" : 0}
 	return season_dict
 
 # Step 3 - Fill the dictionaries of the teams that played in each season
@@ -76,27 +76,31 @@ def readSeasonDataFrame(df, df_length, season_dict):
 		season_dict[away_team]["goals_scored"] += away_goals
 		season_dict[away_team]["games_played"] += 1
 
-	# Calculate each team's average goals per game
+	# Calculate each team's average goals per game (rounded) and actual
 	for key in season_dict.keys():
-		season_dict[key]["goal_average"] = season_dict[key]["goals_scored"] / season_dict[key]["games_played"]
+		season_dict[key]["goal_average_rounded"] = round((season_dict[key]["goals_scored"] / season_dict[key]["games_played"]), 2)
+		season_dict[key]["goal_average_actual"] = season_dict[key]["goals_scored"] / season_dict[key]["games_played"]
 
 # Function to print the the stats of the teams that played in the season
 def displaySeasonTeamStats(season, season_dict):
 	print("")
-	print("-"*110)
-	print(" "*45, season)
-	print("-"*110)
+	print("-"*95)
+	print("|" ," "*37, season, " " *36, "|")
+	print("-"*95)
+	print('| Team', " " * 10, "| Goals Scored | Games Played |", " " * 9, "Average Goals Per Game", " " * 10, "|")
+	print("-"*95)
 	for key in season_dict.keys():
 		goals_scored = season_dict[key]["goals_scored"]
 		games_played = season_dict[key]["games_played"]
-		goal_average = season_dict[key]["goal_average"]
-		print('Team: {0:15s} | Goals Scored: {1:5d} | Games Played: {2:5d} | Avg Goals Per Game: {3}'.format(key, goals_scored, games_played, goal_average))
-		print("-"*110)
+		goal_average_actual = season_dict[key]["goal_average_actual"]
+		goal_average_rounded = season_dict[key]["goal_average_rounded"]
+		print('| {0:15s} | {1:12d} | {2:12d} | Rounded: {3:.2f} - Actual: {4:.16f}  |'.format(key, goals_scored, games_played, goal_average_rounded, goal_average_actual))
+		print("-"*95)
 
 # Step 4 - Fill each season's dictionary with each team's 
 # number of goals, number of games, and goal average
 readSeasonDataFrame(df_0910, len(df_0910), season_0910) # Season 09-10
-displaySeasonTeamStats("EPL Season 09-10", season_0910)
+# displaySeasonTeamStats("EPL Season 09-10", season_0910)
 readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Season 10-11
 # displaySeasonTeamStats("EPL Season 10-11", season_1011) 
 readSeasonDataFrame(df_1112, len(df_1112), season_1112) # Season 11-12
