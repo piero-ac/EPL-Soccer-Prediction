@@ -1,11 +1,17 @@
 # Project #1 
 # EPL Seasons 09-10 to 18-1
-# Hypothesis: A team's ranking in the season's leaderboard is determined by their ranking in a table of avg. goals per game
+# Hypothesis: 
+"""
+A soccer team's ranking in the end-of-season leaderboard can be predicted by their ranking after comparing every team's
+avg. goals per game and goal difference.
+"""
+# A team's ranking in the season's leaderboard is determined by their ranking in a table of avg. goals per game
 # Average Goals Per Game- the number of goals scored divided by the number of games played
 
 import pandas as pd
 from operator import getitem
 import copy
+import re
 
 # Step 1 - Get the data of all CSV files
 df_0910 = pd.read_csv("season_0910.csv", index_col=0)
@@ -184,7 +190,7 @@ season_1516_sorted = sortByAvgGoalsPerGame(season_1516) # Sort EPL Season 15-16 
 season_1617 = readSeasonDataFrame(df_1617, len(df_1617), season_1617) # Fill EPL Season 16-17 With Data of Each Team
 # displaySeasonStats("EPL Season 16-17", season_1617) # Print the Data of the Teams that played in EPL Season 16-17
 season_1617_sorted = sortByAvgGoalsPerGame(season_1617) # Sort EPL Season 16-17 Teams by avg. goal per game and goal difference
-# displaySeasonStats("EPL Season 16-17", season_1617_sorted) # Print the Sorted EPL Season 16-17 Dictionary
+displaySeasonStats("EPL Season 16-17", season_1617_sorted) # Print the Sorted EPL Season 16-17 Dictionary
 
 # EPL Season 17-18
 season_1718 = readSeasonDataFrame(df_1718, len(df_1718), season_1718) # Fill EPL Season 17-18 With Data of Each Team
@@ -197,6 +203,110 @@ season_1819 = readSeasonDataFrame(df_1819, len(df_1819), season_1819) # Fill EPL
 # displaySeasonStats("EPL Season 18-19", season_1819) # Print the Data of the Teams that played in EPL Season 18-19
 season_1819_sorted = sortByAvgGoalsPerGame(season_1819) # Sort EPL Season 18-19 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 18-19", season_1819_sorted) # Print the Sorted EPL Season 18-19 Dictionary
+
+# Step 5 - Compare Actual Ranking of Teams in E.O.S Leaderboard 
+# VS The Ranking of Teams at E.O.S Leaderboard (Sorted by Avg. GPG + G.D.)
+
+# Function to compare each season's league winner to each season's
+# team with the highest avg. goals per game
+def displayComparison(eos_season_dict, sorted_season_dict):
+	eos_season0910_leaderboard = { 
+		"1" : "Chelsea",
+		"2" : "Man United",
+		"3" : "Arsenal",
+		"4" : "Tottenham",
+		"5" : "Man City",
+		"6" : "Aston Villa",
+		"7" : "Liverpool",
+		"8" : "Everton",
+		"9" : "Birgmingham",
+		"10" : "Blackburn",
+		"11" : "Stoke",
+		"12" : "Fulham",
+		"13" : "Sunderland",
+		"14" : "Bolton",
+		"15" : "Wolves",
+		"16" : "Wigan",
+		"17" : "West Ham",
+		"18" : "Burnley",
+		"19" : "Hull",
+		"20" : "Portsmouth",
+	}
+
+	count_same_ranking = 0
+	count_different_ranking = 0
+
+	# Get the keys of the passed season's dictionary
+	# The order of the keys is also the ranking of the teams after sorted by 
+	# Avg. goals per game and goal difference
+	sorted_season_key_list = list(season_dict.keys())
+	eos_season_key_list = list(eos_season0910_leaderboard.keys())
+
+	for i in range(20):
+		eos_ranking = eos_season0910_leaderboard[eos_season_key_list[i]]
+		sorted_season_ranking = sorted_season_key_list[i]
+
+		if eos_ranking == sorted_season_ranking:
+			print("SAME")
+			print("EOS Leaderboard: ", i+1, ".", eos_ranking)
+			print("Sorted Leaderboard: ", i+1, ".", sorted_season_ranking)
+			count_same_ranking += 1
+		else: 
+			print("DIFFERENT")
+			print("EOS Leaderboard: ", i+1, ".", eos_ranking)
+			print("Sorted Leaderboard: ", i+1, ".", sorted_season_ranking)
+			count_different_ranking += 1
+
+	print(count_same_ranking / count_different_ranking)
+	print(count_different_ranking / count_same_ranking)
+
+# displayComparison(season_0910_sorted)
+
+# Read in the E.O.S Leaderboard files for Seasons 09-10 to 18-19
+def createEOSSeasonDict(filename):
+	eos_season_leaderboard = {}
+	inFile = open(filename)
+	for line in inFile:
+		ranking, team = line.strip().split(" ")
+		eos_season_leaderboard[ranking] = team
+
+	
+	#Remove '-' character from team name
+	for key in eos_season_leaderboard.keys():
+		team = eos_season_leaderboard[key]
+		if "-" in team:
+			eos_season_leaderboard[key] = team.replace("-", " ")
+
+	return eos_season_leaderboard
+
+
+
+eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt")
+# print(eos_season0910_leaderboard)
+eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt")
+# print(eos_season1011_leaderboard)
+eos_season1112_leaderboard = createEOSSeasonDict("eos_season1112_leaderboard.txt")
+# print(eos_season1112_leaderboard)
+eos_season1213_leaderboard = createEOSSeasonDict("eos_season1213_leaderboard.txt")
+# print(eos_season1213_leaderboard)
+eos_season1314_leaderboard = createEOSSeasonDict("eos_season1314_leaderboard.txt")
+# print(eos_season1314_leaderboard)
+eos_season1415_leaderboard = createEOSSeasonDict("eos_season1415_leaderboard.txt")
+# print(eos_season1415_leaderboard)
+eos_season1516_leaderboard = createEOSSeasonDict("eos_season1516_leaderboard.txt")
+# print(eos_season1516_leaderboard)
+# eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt")
+# print(eos_season1617_leaderboard)
+# eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt")
+# print(eos_season1718_leaderboard)
+# eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
+# print(eos_season1819_leaderboard)
+
+
+
+
+
+
 
 # Function to find team with the highest avg. goals per game in the season
 # def findHighestGoalAverage(season, season_dict):
