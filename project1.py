@@ -51,10 +51,11 @@ teams_1617 = createTeamNamesList(df_1617, len(df_1617)) #Season 1617
 teams_1718 = createTeamNamesList(df_1718, len(df_1718)) #Season 1718
 teams_1819 = createTeamNamesList(df_1819, len(df_1819)) #Season 1819
 
-
-# Function to create dictionaries for each season of the teams that played
-# in that season. In addition, iniliaze three stats for each team: number of goals,
-# number of games, and goal average.
+"""
+Function to create dictionaries of the teams that played in each season
+Iniliaze six stats for each team: goals scored, goals conceded, games played,
+actual goal average, rounded goal average, and goal difference
+"""
 def createSeasonTeamsDict(team_list):
 	season_dict = {}
 	for i in range(20):
@@ -69,7 +70,11 @@ def createSeasonTeamsDict(team_list):
 
 	return season_dict
 
-# Step 3 - Fill the dictionaries of the teams that played in each season
+"""
+Step 3
+Declare dictionaries to store nested dictionaries (1 for each team that played in the season)
+Call createSeasonTeamsDict function to create the nested dictionaries
+"""
 season_0910 = createSeasonTeamsDict(teams_0910)
 season_1011 = createSeasonTeamsDict(teams_1011)
 season_1112 = createSeasonTeamsDict(teams_1112)
@@ -81,6 +86,9 @@ season_1617 = createSeasonTeamsDict(teams_1617)
 season_1718 = createSeasonTeamsDict(teams_1718)
 season_1819 = createSeasonTeamsDict(teams_1819)
 
+
+"""
+"""
 # Function to traverse the passed season's dataframe, getting each team's total number
 # goals, number of games, and goal average for the season
 def readSeasonDataFrame(df, df_length, season_dict):
