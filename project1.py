@@ -331,9 +331,12 @@ season1617_difference = displayComparison("EPL SEASON 16-17", eos_season1617_lea
 season1718_difference = displayComparison("EPL SEASON 17-18", eos_season1718_leaderboard, season_1718_sorted) # EPL Season 17-18
 season1819_difference = displayComparison("EPL SEASON 18-19", eos_season1819_leaderboard, season_1819_sorted) # EPL Season 18-19
 
-
-# STEP 6 - FIND THE MEAN PERCENT DIFFERENCE
-# List of all the percent differences
+"""
+Step 8
+Store into a list all of the percent differences
+Find the mean percent difference 
+Output Findings / FINAL RESULT
+"""
 seasons_percent_difference = [
 	season0910_difference,
 	season1011_difference,
