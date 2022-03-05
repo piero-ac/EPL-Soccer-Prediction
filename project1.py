@@ -303,7 +303,6 @@ eos_season1819_comparison = displayComparison("EPL SEASON 18-19", eos_season1819
 
 
 # STEP 6 - FIND THE MEAN PERCENT DIFFERENCE
-
 # List of all the percent differences
 seasons_percent_difference = [
 	eos_season0910_comparison,
@@ -323,6 +322,8 @@ for i in range(len(seasons_percent_difference)):
 	sum_of_percents += seasons_percent_difference[i]
 
 mean_percent_difference = sum_of_percents / 10
+
+print("FINAL RESULT")
 print("After comparing the E.O.S Leaderboard and Sorted Season Leaderboard from Seasons")
 print("09-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18, and 18-19")
 print("The mean percent difference is tables was ", '{0:.2f}%'.format(mean_percent_difference))
