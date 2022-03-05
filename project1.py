@@ -1,19 +1,16 @@
 # Project #1 
-# EPL Seasons 09-10 to 18-1
-# Hypothesis: 
-"""
-A soccer team's ranking in the end-of-season leaderboard can be predicted by their ranking after comparing every team's
-avg. goals per game and goal difference.
-"""
-# A team's ranking in the season's leaderboard is determined by their ranking in a table of avg. goals per game
-# Average Goals Per Game- the number of goals scored divided by the number of games played
+# EPL Seasons 09-10 to 18-19
 
 import pandas as pd
 from operator import getitem
 import copy
 import re
 
-# Step 1 - Get the data of all CSV files
+"""
+Step 1
+Import the data of all CSV files and create a DataFrame for each CSV file
+"""
+
 df_0910 = pd.read_csv("season_0910.csv", index_col=0)
 df_1011 = pd.read_csv("season_1011.csv", index_col=0)
 df_1112 = pd.read_csv("season_1112.csv", index_col=0)
@@ -34,7 +31,11 @@ def createTeamNamesList(df, df_length):
 			team_list.append(team_name)
 	return team_list
 
-# Step 2 - Fill the lists of the the teams that played in each season
+"""
+Step 2
+Declare lists to store that teams that played in each season
+Call the createTeamNamesList function to create the list of teams
+"""
 teams_0910 = createTeamNamesList(df_0910, len(df_0910)) #Season 0910
 teams_1011 = createTeamNamesList(df_1011, len(df_1011)) #Season 1011
 teams_1112 = createTeamNamesList(df_1112, len(df_1112)) #Season 1112
