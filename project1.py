@@ -222,15 +222,16 @@ season_1819_sorted = sortByAvgGoalsPerGame(season_1819) # Sort EPL Season 18-19 
 
 
 
-
-# Function to read the data in the E.O.S Leaderboard text files for Seasons 09-10 to 18-19
-# and create dictionaries of the leaderboards
+"""
+Function to read the data in the End of Season (EOS) Leaderboard text files for Seasons 09-10 to 18-19
+and create dictionaries of the EOS leaderboards
+"""
 def createEOSSeasonDict(filename):
 	eos_season_leaderboard = {}
 	inFile = open(filename)
-	for line in inFile:
-		ranking, team = line.strip().split(" ")
-		eos_season_leaderboard[ranking] = team
+	for line in inFile: # Each line holds a ranking, and the team in that ranking
+		ranking, team = line.strip().split(" ") # Ranking and team is separated by a " "
+		eos_season_leaderboard[ranking] = team # Ranking is the key, team is the value
 
 	#Remove '-' character from team name
 	for key in eos_season_leaderboard.keys():
@@ -240,6 +241,22 @@ def createEOSSeasonDict(filename):
 
 	return eos_season_leaderboard
 
+"""
+Step 6
+Create 10 dictionaries to store the End of Season Leaderboard rankings for each season
+These rankings were based on the total points each team accumulated by the end of each season
+Gathered from Google
+"""
+eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt") # EPL Season 09-10
+eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt") # EPL Season 10-11
+eos_season1112_leaderboard = createEOSSeasonDict("eos_season1112_leaderboard.txt") # EPL Season 11-12
+eos_season1213_leaderboard = createEOSSeasonDict("eos_season1213_leaderboard.txt") # EPL Season 12-13
+eos_season1314_leaderboard = createEOSSeasonDict("eos_season1314_leaderboard.txt") # EPL Season 13-14
+eos_season1415_leaderboard = createEOSSeasonDict("eos_season1415_leaderboard.txt") # EPL Season 14-15
+eos_season1516_leaderboard = createEOSSeasonDict("eos_season1516_leaderboard.txt") # EPL Season 15-16
+eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt") # EPL Season 16-17
+eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt") # EPL Season 17-18
+eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt") # EPL Season 18-19
 
 # Function to compare each season's league winner to each season's
 # team with the highest avg. goals per game
@@ -297,35 +314,34 @@ def displayComparison(season_title, eos_season_dict, sorted_season_dict, display
 # And save the percent difference of the comparison between tables
 # EPL Season 09-10 
 
-eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt")
+
 eos_season0910_comparison = displayComparison("EPL SEASON 09-10", eos_season0910_leaderboard, season_0910_sorted)
 
 # EPL Season 10-11
-eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt")
+
 eos_season1011_comparison = displayComparison("EPL SEASON 10-11", eos_season1011_leaderboard, season_1011_sorted)
 # EPL Season 11-12
-eos_season1112_leaderboard = createEOSSeasonDict("eos_season1112_leaderboard.txt")
+
 eos_season1112_comparison = displayComparison("EPL SEASON 11-12", eos_season1112_leaderboard, season_1112_sorted)
 # EPL Season 12-13
-eos_season1213_leaderboard = createEOSSeasonDict("eos_season1213_leaderboard.txt")
+
 eos_season1213_comparison = displayComparison("EPL SEASON 12-13", eos_season1213_leaderboard, season_1213_sorted)
 # EPL Season 13-14
-eos_season1314_leaderboard = createEOSSeasonDict("eos_season1314_leaderboard.txt")
+
 eos_season1314_comparison = displayComparison("EPL SEASON 13-14", eos_season1314_leaderboard, season_1314_sorted)
 # EPL Season 14-15
-eos_season1415_leaderboard = createEOSSeasonDict("eos_season1415_leaderboard.txt")
+
 eos_season1415_comparison = displayComparison("EPL SEASON 14-15", eos_season1415_leaderboard, season_1415_sorted)
 # EPL Season 15-16
-eos_season1516_leaderboard = createEOSSeasonDict("eos_season1516_leaderboard.txt")
+
 eos_season1516_comparison = displayComparison("EPL SEASON 15-16", eos_season1516_leaderboard, season_1516_sorted)
 # EPL Season 16-17
-eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt")
+
 eos_season1617_comparison = displayComparison("EPL SEASON 16-17", eos_season1617_leaderboard, season_1617_sorted)
 # EPL Season 17-18
-eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt")
 eos_season1718_comparison = displayComparison("EPL SEASON 17-18", eos_season1718_leaderboard, season_1718_sorted)
 # EPL Season 18-19
-eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
+
 eos_season1819_comparison = displayComparison("EPL SEASON 18-19", eos_season1819_leaderboard, season_1819_sorted)
 
 
