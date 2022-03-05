@@ -190,7 +190,7 @@ season_1516_sorted = sortByAvgGoalsPerGame(season_1516) # Sort EPL Season 15-16 
 season_1617 = readSeasonDataFrame(df_1617, len(df_1617), season_1617) # Fill EPL Season 16-17 With Data of Each Team
 # displaySeasonStats("EPL Season 16-17", season_1617) # Print the Data of the Teams that played in EPL Season 16-17
 season_1617_sorted = sortByAvgGoalsPerGame(season_1617) # Sort EPL Season 16-17 Teams by avg. goal per game and goal difference
-displaySeasonStats("EPL Season 16-17", season_1617_sorted) # Print the Sorted EPL Season 16-17 Dictionary
+# displaySeasonStats("EPL Season 16-17", season_1617_sorted) # Print the Sorted EPL Season 16-17 Dictionary
 
 # EPL Season 17-18
 season_1718 = readSeasonDataFrame(df_1718, len(df_1718), season_1718) # Fill EPL Season 17-18 With Data of Each Team
@@ -210,28 +210,6 @@ season_1819_sorted = sortByAvgGoalsPerGame(season_1819) # Sort EPL Season 18-19 
 # Function to compare each season's league winner to each season's
 # team with the highest avg. goals per game
 def displayComparison(eos_season_dict, sorted_season_dict):
-	eos_season0910_leaderboard = { 
-		"1" : "Chelsea",
-		"2" : "Man United",
-		"3" : "Arsenal",
-		"4" : "Tottenham",
-		"5" : "Man City",
-		"6" : "Aston Villa",
-		"7" : "Liverpool",
-		"8" : "Everton",
-		"9" : "Birgmingham",
-		"10" : "Blackburn",
-		"11" : "Stoke",
-		"12" : "Fulham",
-		"13" : "Sunderland",
-		"14" : "Bolton",
-		"15" : "Wolves",
-		"16" : "Wigan",
-		"17" : "West Ham",
-		"18" : "Burnley",
-		"19" : "Hull",
-		"20" : "Portsmouth",
-	}
 
 	count_same_ranking = 0
 	count_different_ranking = 0
@@ -257,12 +235,11 @@ def displayComparison(eos_season_dict, sorted_season_dict):
 			print("Sorted Leaderboard: ", i+1, ".", sorted_season_ranking)
 			count_different_ranking += 1
 
-	print(count_same_ranking / count_different_ranking)
-	print(count_different_ranking / count_same_ranking)
+	print(count_same_ranking / 20)
 
 # displayComparison(season_0910_sorted)
 
-# Read in the E.O.S Leaderboard files for Seasons 09-10 to 18-19
+# Read in the E.O.S Leaderboard text files for Seasons 09-10 to 18-19
 def createEOSSeasonDict(filename):
 	eos_season_leaderboard = {}
 	inFile = open(filename)
@@ -280,133 +257,42 @@ def createEOSSeasonDict(filename):
 	return eos_season_leaderboard
 
 
-
+# EPL Season 09-10
 eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt")
 # print(eos_season0910_leaderboard)
+
+# EPL Season 10-11
 eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt")
 # print(eos_season1011_leaderboard)
+
+# EPL Season 11-12
 eos_season1112_leaderboard = createEOSSeasonDict("eos_season1112_leaderboard.txt")
 # print(eos_season1112_leaderboard)
+
+# EPL Season 12-13
 eos_season1213_leaderboard = createEOSSeasonDict("eos_season1213_leaderboard.txt")
 # print(eos_season1213_leaderboard)
+
+# EPL Season 13-14
 eos_season1314_leaderboard = createEOSSeasonDict("eos_season1314_leaderboard.txt")
 # print(eos_season1314_leaderboard)
+
+# EPL Season 14-15
 eos_season1415_leaderboard = createEOSSeasonDict("eos_season1415_leaderboard.txt")
 # print(eos_season1415_leaderboard)
+
+# EPL Season 15-16
 eos_season1516_leaderboard = createEOSSeasonDict("eos_season1516_leaderboard.txt")
 # print(eos_season1516_leaderboard)
-# eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt")
+
+# EPL Season 16-17
+eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt")
 # print(eos_season1617_leaderboard)
-# eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt")
+
+# EPL Season 17-18
+eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt")
 # print(eos_season1718_leaderboard)
-# eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
+
+# EPL Season 18-19
+eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
 # print(eos_season1819_leaderboard)
-
-
-
-
-
-
-
-# Function to find team with the highest avg. goals per game in the season
-# def findHighestGoalAverage(season, season_dict):
-# 	highest_team = ""
-# 	highest_goal_avg_actual = 0
-# 	highest_goal_avg_rounded = 0
-# 	for key in season_dict.keys():
-# 		if season_dict[key]["goal_average_actual"] > highest_goal_avg_actual:
-# 			#Save the current highest avg. goals per game (actual)
-# 			highest_goal_avg_actual = season_dict[key]["goal_average_actual"]
-# 			#Save the current highest avg. goals per game (rounded) 
-# 			highest_goal_avg_rounded = season_dict[key]["goal_average_rounded"] 
-# 			#Save the team with the current highest avg. goals per game
-# 			highest_team = key
-
-# 	#Return a list with the each season's team with the highest avg. goals per game
-# 	return [season, highest_team, highest_goal_avg_actual, highest_goal_avg_rounded]
-
-# # Function to display information of each season's team with the highest avg. goals per game
-# def displaySeasonsTop(seasons_top):
-# 	print("")
-# 	print("-"*56)
-# 	print("| Each EPL Season's Team with the Highest Goal Average |")
-# 	print("-"*56)
-# 	print("| EPL SEASON | TEAM", " " * 10, "| AVG. GOALS PER GAME ", " |")
-# 	print("-"*56)
-# 	for i in range(len(seasons_top)):
-# 		season = seasons_top[i][0]
-# 		team = seasons_top[i][1]
-# 		highest_goal_avg_rounded = seasons_top[i][3]
-# 		print("|", season, " " * 4 , '| {0:15s} | {1:.2f}'.format(team, highest_goal_avg_rounded), " " * 16, "|")
-# 		print("-"*56)
-
-# # Step 5 - Create a List of Each Season's Team with the highest avg. goals per game
-# seasons_top = []
-# seasons_top.append(findHighestGoalAverage("09-10", season_0910))
-# seasons_top.append(findHighestGoalAverage("10-11", season_1011))
-# seasons_top.append(findHighestGoalAverage("11-12", season_1112))
-# seasons_top.append(findHighestGoalAverage("12-13", season_1213))
-# seasons_top.append(findHighestGoalAverage("13-14", season_1314))
-# seasons_top.append(findHighestGoalAverage("14-15", season_1415))
-# seasons_top.append(findHighestGoalAverage("15-16", season_1516))
-# seasons_top.append(findHighestGoalAverage("16-17", season_1617))
-# seasons_top.append(findHighestGoalAverage("17-18", season_1718))
-# seasons_top.append(findHighestGoalAverage("18-19", season_1819))
-
-# # displaySeasonsTop(seasons_top)
-
-# # Function to compare each season's league winner to each season's
-# # team with the highest avg. goals per game
-# def displayComparison(seasons_top):
-# 	season_winners = { 
-# 		"09-10" : "Chelsea",
-# 		"10-11" : "Man United",
-# 		"11-12" : "Man City",
-# 		"12-13" : "Man United",
-# 		"13-14" : "Man City",
-# 		"14-15" : "Chelsea",
-# 		"15-16" : "Leicester",
-# 		"16-17" : "Chelsea",
-# 		"17-18" : "Man City",
-# 		"18-19" : "Man City",
-# 	}
-
-# 	# Get a list of all seasons_winner keys
-# 	key_list = list(season_winners.keys())
-
-# 	winner_and_top_team_count = 0
-# 	top_team_only_count = 0
-
-# 	print("")
-# 	print("-"*73)
-# 	print("| Comparison of League Winner VS Team with Highest Avg. Goals Per Game  |")
-# 	print("-"*73)
-# 	print("| EPL Season | League Winner   |  Team with Highest Avg. Goals Per Game |")
-# 	print("-"*73)
-# 	for i in range(len(seasons_top)):
-# 		season = key_list[i] # Store the season year
-# 		winning_team = season_winners[season] # Season's Winning Team
-# 		seasons_team_highest = seasons_top[i][1] # Team with Season's Highest Avg. Goal per Game
-# 		seasons_team_highest_goal_avg_rounded = seasons_top[i][2] # Team's Avg. Goal per Game
-
-# 		print("|", season, " " * 6 ,'| {0:14s}| {1:14s}'.format(winning_team, seasons_team_highest), " " * 23, "|")
-# 		print("-"*73)
-
-# 		# The winning team of the season also had the highest goal average
-# 		if winning_team == seasons_team_highest:
-# 			#print('{0:15s} won the {1:16s} and had the highest goal average of the season with {2} goals per game.'.format(winning_team, season, seasons_team_highest_goal_avg_rounded))
-# 			winner_and_top_team_count += 1
-# 		# The winning team of the season and the team with the highest avg. goal per game were different
-# 		else:
-# 			#print('{0:15s} won the {1:16s} and {2:15s} had the highest goal average of the season with {3} goals per game.'.format(winning_team, season, seasons_team_highest, seasons_team_highest_goal_avg_rounded))
-# 			top_team_only_count += 1
-
-# 	percentage = (winner_and_top_team_count / top_team_only_count) * 100
-# 	return str(percentage) + "%"
-
-# results = displayComparison(seasons_top)
-
-
-
-
-
