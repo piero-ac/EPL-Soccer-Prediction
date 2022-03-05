@@ -152,25 +152,25 @@ Call the readSeasonDataFrame function to fill the dictionary with the appropriat
 """
 
 season_0910 = readSeasonDataFrame(df_0910, len(df_0910), season_0910) # Fill EPL Season 09-10 With Data of Each Team
-# displaySeasonStats("EPL Season 09-10", season_0910) # Print the Data of the Teams that played in EPL Season 09-10
+# displaySeasonStats("EPL Season 09-10", season_0910) # Print the Unsorted Teams that played in EPL Season 09-10
 season_1011 = readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Fill EPL Season 10-11 With Data of Each Team
-# displaySeasonStats("EPL Season 10-11", season_1011) # Print the Data of the Teams that played in EPL Season 10-11
+# displaySeasonStats("EPL Season 10-11", season_1011) # Print the Unsorted Teams that played in EPL Season 10-11
 season_1112 = readSeasonDataFrame(df_1112, len(df_1112), season_1112) # Fill EPL Season 11-12 With Data of Each Team
-# displaySeasonStats("EPL Season 11-12", season_1112) # Print the Data of the Teams that played in EPL Season 11-12
+# displaySeasonStats("EPL Season 11-12", season_1112) # Print the Unsorted Teams that played in EPL Season 11-12
 season_1213 = readSeasonDataFrame(df_1213, len(df_1213), season_1213) # Fill EPL Season 12-13 With Data of Each Team
-# displaySeasonStats("EPL Season 12-13", season_1213) # Print the Data of the Teams that played in EPL Season 12-13
+# displaySeasonStats("EPL Season 12-13", season_1213) # Print the Unsorted Teams that played in EPL Season 12-13
 season_1314 = readSeasonDataFrame(df_1314, len(df_1314), season_1314) # Fill EPL Season 13-14 With Data of Each Team
-# displaySeasonStats("EPL Season 13-14", season_1314) # Print the Data of the Teams that played in EPL Season 13-14
+# displaySeasonStats("EPL Season 13-14", season_1314) # Print the Unsorted Teams that played in EPL Season 13-14
 season_1415 = readSeasonDataFrame(df_1415, len(df_1415), season_1415) # Fill EPL Season 14-15 With Data of Each Team
-# displaySeasonStats("EPL Season 14-15", season_1415) # Print the Data of the Teams that played in EPL Season 14-15
+# displaySeasonStats("EPL Season 14-15", season_1415) # Print the Unsorted Teams that played in EPL Season 14-15
 season_1516 = readSeasonDataFrame(df_1516, len(df_1516), season_1516) # Fill EPL Season 15-16 With Data of Each Team
-# displaySeasonStats("EPL Season 15-16", season_1516) # Print the Data of the Teams that played in EPL Season 15-16
+# displaySeasonStats("EPL Season 15-16", season_1516) # Print the Unsorted Teams that played in EPL Season 15-16
 season_1617 = readSeasonDataFrame(df_1617, len(df_1617), season_1617) # Fill EPL Season 16-17 With Data of Each Team
-# displaySeasonStats("EPL Season 16-17", season_1617) # Print the Data of the Teams that played in EPL Season 16-17
+# displaySeasonStats("EPL Season 16-17", season_1617) # Print the Unsorted Teams that played in EPL Season 16-17
 season_1718 = readSeasonDataFrame(df_1718, len(df_1718), season_1718) # Fill EPL Season 17-18 With Data of Each Team
-# displaySeasonStats("EPL Season 17-18", season_1718) # Print the Data of the Teams that played in EPL Season 17-18
+# displaySeasonStats("EPL Season 17-18", season_1718) # Print the Unsorted Teams that played in EPL Season 17-18
 season_1819 = readSeasonDataFrame(df_1819, len(df_1819), season_1819) # Fill EPL Season 18-19 With Data of Each Team
-# displaySeasonStats("EPL Season 18-19", season_1819) # Print the Data of the Teams that played in EPL Season 18-19
+# displaySeasonStats("EPL Season 18-19", season_1819) # Print the Unsorted Teams that played in EPL Season 18-19
 
 # Function to sort the team's by avg. goals per game (descending order)
 def sortByAvgGoalsPerGame(season_dict):
@@ -351,7 +351,7 @@ for i in range(len(seasons_percent_difference)):
 mean_percent_difference = sum_of_percents / 10
 
 print("FINAL RESULT")
-print("After comparing the E.O.S Leaderboard and Sorted Season Leaderboard from Seasons")
+print("After comparing the E.O.S Leaderboard and Sorted Season Leaderboard of Seasons")
 print("09-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18, and 18-19")
-print("The mean percent difference is tables was ", '{0:.2f}%'.format(mean_percent_difference))
+print("The MEAN PERCENT DIFFERENCE of the leaderboards was ", '{0:.2f}%'.format(mean_percent_difference))
 
