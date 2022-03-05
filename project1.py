@@ -147,8 +147,7 @@ def displaySeasonStats(season, season_dict):
 Step 4
 Fill each season dictionary with each team's 
 Call the readSeasonDataFrame function to fill the dictionary with the appropriate data
-(Optional, display a formatted table showing the data of each team in a particular season.
-Add a fourth argument of True (Boolean) to the displaySeasonStats function call)
+(Optional, display a formatted table showing the data of each team in a particular season)
 """
 
 # EPL Season 09-10
@@ -198,8 +197,7 @@ Step 5
 Declare dictionaries to store the sorted dictionaries of each season's team's stats
 Call sortByAvgGoalsPerGame function to sort the team's by avg. goals per game
 If two or more teams have the same stat for avg. goals per game, sort those teams by their goal difference
-(Optional, display a formatted table showing the sorted team leaderboard.
-Add a fourth argument of True (Boolean) to the displaySeasonStats function call)
+(Optional, display a formatted table showing the sorted team leaderboard)
 """
 season_0910_sorted = sortByAvgGoalsPerGame(season_0910) # Sort EPL Season 09-10 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 09-10", season_0910_sorted) # Print the Sorted EPL Season 09-10 Dictionary
