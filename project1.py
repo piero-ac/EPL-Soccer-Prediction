@@ -258,9 +258,12 @@ eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt
 eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt") # EPL Season 17-18
 eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt") # EPL Season 18-19
 
-# Function to compare each season's league winner to each season's
-# team with the highest avg. goals per game
-# Return the percent difference of the comparison between tables
+
+"""
+Function to compare each season's league winner to each season's team with the highest avg. goals per game
+Return the percent difference of the comparison between tables
+"""
+
 def displayComparison(season_title, eos_season_dict, sorted_season_dict, display=False):
 	count_same_ranking = 0
 	count_different_ranking = 0
@@ -309,55 +312,39 @@ def displayComparison(season_title, eos_season_dict, sorted_season_dict, display
 
 	return difference_in_tables
 
-# Step 5 - Compare Actual Ranking of Teams in E.O.S Leaderboard 
-# VS The Ranking of Teams at E.O.S Leaderboard (Sorted by Avg. GPG + G.D.)
-# And save the percent difference of the comparison between tables
-# EPL Season 09-10 
-
-
-eos_season0910_comparison = displayComparison("EPL SEASON 09-10", eos_season0910_leaderboard, season_0910_sorted)
-
-# EPL Season 10-11
-
-eos_season1011_comparison = displayComparison("EPL SEASON 10-11", eos_season1011_leaderboard, season_1011_sorted)
-# EPL Season 11-12
-
-eos_season1112_comparison = displayComparison("EPL SEASON 11-12", eos_season1112_leaderboard, season_1112_sorted)
-# EPL Season 12-13
-
-eos_season1213_comparison = displayComparison("EPL SEASON 12-13", eos_season1213_leaderboard, season_1213_sorted)
-# EPL Season 13-14
-
-eos_season1314_comparison = displayComparison("EPL SEASON 13-14", eos_season1314_leaderboard, season_1314_sorted)
-# EPL Season 14-15
-
-eos_season1415_comparison = displayComparison("EPL SEASON 14-15", eos_season1415_leaderboard, season_1415_sorted)
-# EPL Season 15-16
-
-eos_season1516_comparison = displayComparison("EPL SEASON 15-16", eos_season1516_leaderboard, season_1516_sorted)
-# EPL Season 16-17
-
-eos_season1617_comparison = displayComparison("EPL SEASON 16-17", eos_season1617_leaderboard, season_1617_sorted)
-# EPL Season 17-18
-eos_season1718_comparison = displayComparison("EPL SEASON 17-18", eos_season1718_leaderboard, season_1718_sorted)
-# EPL Season 18-19
-
-eos_season1819_comparison = displayComparison("EPL SEASON 18-19", eos_season1819_leaderboard, season_1819_sorted)
+"""
+Step 7
+Compare the rankings of the teams at the EOS (Based on Points) Leaderboard VS 
+the rankings of the teams (Based on Avg. Goals Per Game) Leaderboard for each season
+Call displayComparison function to calculate the differences between the leaderboards
+(Optional, add a fourth argument: True (Boolean), to the function to display a table
+comparing the two leaderboards)
+"""
+season0910_difference = displayComparison("EPL SEASON 09-10", eos_season0910_leaderboard, season_0910_sorted) # EPL Season 09-10
+season1011_difference = displayComparison("EPL SEASON 10-11", eos_season1011_leaderboard, season_1011_sorted) # EPL Season 10-11
+season1112_difference = displayComparison("EPL SEASON 11-12", eos_season1112_leaderboard, season_1112_sorted) # EPL Season 11-12
+season1213_difference = displayComparison("EPL SEASON 12-13", eos_season1213_leaderboard, season_1213_sorted) # EPL Season 12-13
+season1314_difference = displayComparison("EPL SEASON 13-14", eos_season1314_leaderboard, season_1314_sorted) # EPL Season 13-14
+season1415_difference = displayComparison("EPL SEASON 14-15", eos_season1415_leaderboard, season_1415_sorted) # EPL Season 14-15
+season1516_difference = displayComparison("EPL SEASON 15-16", eos_season1516_leaderboard, season_1516_sorted) # EPL Season 15-16
+season1617_difference = displayComparison("EPL SEASON 16-17", eos_season1617_leaderboard, season_1617_sorted) # EPL Season 16-17
+season1718_difference = displayComparison("EPL SEASON 17-18", eos_season1718_leaderboard, season_1718_sorted) # EPL Season 17-18
+season1819_difference = displayComparison("EPL SEASON 18-19", eos_season1819_leaderboard, season_1819_sorted) # EPL Season 18-19
 
 
 # STEP 6 - FIND THE MEAN PERCENT DIFFERENCE
 # List of all the percent differences
 seasons_percent_difference = [
-	eos_season0910_comparison,
-	eos_season1011_comparison,
-	eos_season1112_comparison,
-	eos_season1213_comparison,
-	eos_season1314_comparison,
-	eos_season1415_comparison,
-	eos_season1516_comparison,
-	eos_season1617_comparison,
-	eos_season1718_comparison,
-	eos_season1819_comparison
+	season0910_difference,
+	season1011_difference,
+	season1112_difference,
+	season1213_difference,
+	season1314_difference,
+	season1415_difference,
+	season1516_difference,
+	season1617_difference,
+	season1718_difference,
+	season1819_difference
 ]
 
 sum_of_percents = 0
