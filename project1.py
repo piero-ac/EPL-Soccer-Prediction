@@ -216,8 +216,8 @@ def createEOSSeasonDict(filename):
 
 # Function to compare each season's league winner to each season's
 # team with the highest avg. goals per game
-# Return the percentage value of the comparison between tables
-def displayComparison(season_title, eos_season_dict, sorted_season_dict):
+# Return the percent difference of the comparison between tables
+def displayComparison(season_title, eos_season_dict, sorted_season_dict, display=False):
 	count_same_ranking = 0
 	count_different_ranking = 0
 
@@ -228,13 +228,16 @@ def displayComparison(season_title, eos_season_dict, sorted_season_dict):
 	eos_season_key_list = list(eos_season_dict.keys())
 
 	# COMPARISON TABLE HEADER
-	print("")
-	print("-" * 57)
-	print("|", " "*16, season_title, " "*19, "|")
-	print("| COMPARISON OF EOS LEADERBOARD AND SORTED LEADERBOARD  |")
-	print("-" * 57)
-	print("| PLACE | EOS LEADERBOARD | SORTED LEADERBOARD | RESULT |")
-	print("-" * 57)
+	if display:
+		print("")
+		print("-" * 57)
+		print("|", " "*16, season_title, " "*19, "|")
+		print("| COMPARISON OF EOS LEADERBOARD AND SORTED LEADERBOARD  |")
+		print("-" * 57)
+		print("| PLACE | EOS LEADERBOARD | SORTED LEADERBOARD | RESULT |")
+		print("-" * 57)
+	else:
+		print(season_title)
 
 	for i in range(20):
 		eos_ranking = eos_season_dict[eos_season_key_list[i]]
@@ -248,11 +251,14 @@ def displayComparison(season_title, eos_season_dict, sorted_season_dict):
 			result = "DIFF"
 			count_different_ranking += 1
 
-		#COMPARISON TABLE ROW
-		print('| {0:5d} | {1:15s} | {2:18s} | {3:6s} |'.format(i+1, eos_ranking, sorted_season_ranking, result))
-		print("-" * 57)
+		if display:
+			#COMPARISON TABLE ROW
+			print('| {0:5d} | {1:15s} | {2:18s} | {3:6s} |'.format(i+1, eos_ranking, sorted_season_ranking, result))
+			print("-" * 57)
 
 	difference_in_tables = (count_same_ranking / 20) * 100
+
+	
 	print("After comparing the E.O.S. Leaderboard and the Sorted Season Leaderboards")
 	print("Only ", '{0:.2f}%'.format(difference_in_tables), " of teams had the same positioning on both leaderboards.")
 	print("")
@@ -261,10 +267,12 @@ def displayComparison(season_title, eos_season_dict, sorted_season_dict):
 
 # Step 5 - Compare Actual Ranking of Teams in E.O.S Leaderboard 
 # VS The Ranking of Teams at E.O.S Leaderboard (Sorted by Avg. GPG + G.D.)
-
+# And save the percent difference of the comparison between tables
 # EPL Season 09-10 
+
 eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt")
 eos_season0910_comparison = displayComparison("EPL SEASON 09-10", eos_season0910_leaderboard, season_0910_sorted)
+
 # EPL Season 10-11
 eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt")
 eos_season1011_comparison = displayComparison("EPL SEASON 10-11", eos_season1011_leaderboard, season_1011_sorted)
@@ -293,4 +301,29 @@ eos_season1718_comparison = displayComparison("EPL SEASON 17-18", eos_season1718
 eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
 eos_season1819_comparison = displayComparison("EPL SEASON 18-19", eos_season1819_leaderboard, season_1819_sorted)
 
+
+# STEP 6 - FIND THE MEAN PERCENT DIFFERENCE
+
+# List of all the percent differences
+seasons_percent_difference = [
+	eos_season0910_comparison,
+	eos_season1011_comparison,
+	eos_season1112_comparison,
+	eos_season1213_comparison,
+	eos_season1314_comparison,
+	eos_season1415_comparison,
+	eos_season1516_comparison,
+	eos_season1617_comparison,
+	eos_season1718_comparison,
+	eos_season1819_comparison
+]
+
+sum_of_percents = 0
+for i in range(len(seasons_percent_difference)):
+	sum_of_percents += seasons_percent_difference[i]
+
+mean_percent_difference = sum_of_percents / 10
+print("After comparing the E.O.S Leaderboard and Sorted Season Leaderboard from Seasons")
+print("09-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18, and 18-19")
+print("The mean percent difference is tables was ", '{0:.2f}%'.format(mean_percent_difference))
 
