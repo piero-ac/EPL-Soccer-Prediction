@@ -149,55 +149,46 @@ season_0910 = readSeasonDataFrame(df_0910, len(df_0910), season_0910) # Fill EPL
 # displaySeasonStats("EPL Season 09-10", season_0910) # Print the Data of the Teams that played in EPL Season 09-10
 season_0910_sorted = sortByAvgGoalsPerGame(season_0910) # Sort EPL Season 09-10 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 09-10", season_0910_sorted) # Print the Sorted EPL Season 09-10 Dictionary
-
 # EPL Season 10-11
 season_1011 = readSeasonDataFrame(df_1011, len(df_1011), season_1011) # Fill EPL Season 10-11 With Data of Each Team
 # displaySeasonStats("EPL Season 10-11", season_1011) # Print the Data of the Teams that played in EPL Season 10-11
 season_1011_sorted = sortByAvgGoalsPerGame(season_1011) # Sort EPL Season 10-11 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 10-11", season_1011_sorted) # Print the Sorted EPL Season 10-11 Dictionary
-
 # EPL Season 11-12
 season_1112 = readSeasonDataFrame(df_1112, len(df_1112), season_1112) # Fill EPL Season 11-12 With Data of Each Team
 # displaySeasonStats("EPL Season 11-12", season_1112) # Print the Data of the Teams that played in EPL Season 11-12
 season_1112_sorted = sortByAvgGoalsPerGame(season_1112) # Sort EPL Season 11-12 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 11-12", season_1112_sorted) # Print the Sorted EPL Season 11-12 Dictionary
-
 # EPL Season 12-13
 season_1213 = readSeasonDataFrame(df_1213, len(df_1213), season_1213) # Fill EPL Season 12-13 With Data of Each Team
 # displaySeasonStats("EPL Season 12-13", season_1213) # Print the Data of the Teams that played in EPL Season 12-13
 season_1213_sorted = sortByAvgGoalsPerGame(season_1213) # Sort EPL Season 12-13 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 12-13", season_1213_sorted) # Print the Sorted EPL Season 12-13 Dictionary
-
 # EPL Season 13-14
 season_1314 = readSeasonDataFrame(df_1314, len(df_1314), season_1314) # Fill EPL Season 13-14 With Data of Each Team
 # displaySeasonStats("EPL Season 13-14", season_1314) # Print the Data of the Teams that played in EPL Season 13-14
 season_1314_sorted = sortByAvgGoalsPerGame(season_1314) # Sort EPL Season 13-14 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 13-14", season_1314_sorted) # Print the Sorted EPL Season 13-14 Dictionary
-
 # EPL Season 14-15
 season_1415 = readSeasonDataFrame(df_1415, len(df_1415), season_1415) # Fill EPL Season 14-15 With Data of Each Team
 # displaySeasonStats("EPL Season 14-15", season_1415) # Print the Data of the Teams that played in EPL Season 14-15
 season_1415_sorted = sortByAvgGoalsPerGame(season_1415) # Sort EPL Season 14-15 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 14-15", season_1415_sorted) # Print the Sorted EPL Season 14-15 Dictionary
-
 # EPL Season 15-16
 season_1516 = readSeasonDataFrame(df_1516, len(df_1516), season_1516) # Fill EPL Season 15-16 With Data of Each Team
 # displaySeasonStats("EPL Season 15-16", season_1516) # Print the Data of the Teams that played in EPL Season 15-16
 season_1516_sorted = sortByAvgGoalsPerGame(season_1516) # Sort EPL Season 15-16 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 15-16", season_1516_sorted) # Print the Sorted EPL Season 15-16 Dictionary
-
 # EPL Season 16-17
 season_1617 = readSeasonDataFrame(df_1617, len(df_1617), season_1617) # Fill EPL Season 16-17 With Data of Each Team
 # displaySeasonStats("EPL Season 16-17", season_1617) # Print the Data of the Teams that played in EPL Season 16-17
 season_1617_sorted = sortByAvgGoalsPerGame(season_1617) # Sort EPL Season 16-17 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 16-17", season_1617_sorted) # Print the Sorted EPL Season 16-17 Dictionary
-
 # EPL Season 17-18
 season_1718 = readSeasonDataFrame(df_1718, len(df_1718), season_1718) # Fill EPL Season 17-18 With Data of Each Team
 # displaySeasonStats("EPL Season 17-18", season_1718) # Print the Data of the Teams that played in EPL Season 17-18
 season_1718_sorted = sortByAvgGoalsPerGame(season_1718) # Sort EPL Season 17-18 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 17-18", season_1718_sorted) # Print the Sorted EPL Season 17-18 Dictionary
-
 # EPL Season 18-19
 season_1819 = readSeasonDataFrame(df_1819, len(df_1819), season_1819) # Fill EPL Season 18-19 With Data of Each Team
 # displaySeasonStats("EPL Season 18-19", season_1819) # Print the Data of the Teams that played in EPL Season 18-19
@@ -210,7 +201,6 @@ season_1819_sorted = sortByAvgGoalsPerGame(season_1819) # Sort EPL Season 18-19 
 # Function to compare each season's league winner to each season's
 # team with the highest avg. goals per game
 def displayComparison(eos_season_dict, sorted_season_dict):
-
 	count_same_ranking = 0
 	count_different_ranking = 0
 
@@ -225,21 +215,16 @@ def displayComparison(eos_season_dict, sorted_season_dict):
 		sorted_season_ranking = sorted_season_key_list[i]
 
 		if eos_ranking == sorted_season_ranking:
-			print("SAME")
-			print("EOS Leaderboard: ", i+1, ".", eos_ranking)
-			print("Sorted Leaderboard: ", i+1, ".", sorted_season_ranking)
 			count_same_ranking += 1
 		else: 
-			print("DIFFERENT")
-			print("EOS Leaderboard: ", i+1, ".", eos_ranking)
-			print("Sorted Leaderboard: ", i+1, ".", sorted_season_ranking)
 			count_different_ranking += 1
 
-	print(count_same_ranking / 20)
+	difference_in_tables = (count_same_ranking / 20) * 100
+	print("After comparing the E.O.S. Leaderboard and the Sorted Season Leaderboards")
+	print("Only ", '{0:.2f}%'.format(difference_in_tables), " of teams had the same positioning on both leaderboards.")
 
-# displayComparison(season_0910_sorted)
-
-# Read in the E.O.S Leaderboard text files for Seasons 09-10 to 18-19
+# Function to read the data in the E.O.S Leaderboard text files for Seasons 09-10 to 18-19
+# and create dictionaries of the leaderboards
 def createEOSSeasonDict(filename):
 	eos_season_leaderboard = {}
 	inFile = open(filename)
@@ -257,42 +242,23 @@ def createEOSSeasonDict(filename):
 	return eos_season_leaderboard
 
 
-# EPL Season 09-10
+# EPL Season 09-10 
 eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt")
-# print(eos_season0910_leaderboard)
-
 # EPL Season 10-11
 eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt")
-# print(eos_season1011_leaderboard)
-
 # EPL Season 11-12
 eos_season1112_leaderboard = createEOSSeasonDict("eos_season1112_leaderboard.txt")
-# print(eos_season1112_leaderboard)
-
 # EPL Season 12-13
 eos_season1213_leaderboard = createEOSSeasonDict("eos_season1213_leaderboard.txt")
-# print(eos_season1213_leaderboard)
-
 # EPL Season 13-14
 eos_season1314_leaderboard = createEOSSeasonDict("eos_season1314_leaderboard.txt")
-# print(eos_season1314_leaderboard)
-
 # EPL Season 14-15
 eos_season1415_leaderboard = createEOSSeasonDict("eos_season1415_leaderboard.txt")
-# print(eos_season1415_leaderboard)
-
 # EPL Season 15-16
 eos_season1516_leaderboard = createEOSSeasonDict("eos_season1516_leaderboard.txt")
-# print(eos_season1516_leaderboard)
-
 # EPL Season 16-17
 eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt")
-# print(eos_season1617_leaderboard)
-
 # EPL Season 17-18
 eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt")
-# print(eos_season1718_leaderboard)
-
 # EPL Season 18-19
 eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
-# print(eos_season1819_leaderboard)
