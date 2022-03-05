@@ -195,33 +195,6 @@ season_1819 = readSeasonDataFrame(df_1819, len(df_1819), season_1819) # Fill EPL
 season_1819_sorted = sortByAvgGoalsPerGame(season_1819) # Sort EPL Season 18-19 Teams by avg. goal per game and goal difference
 # displaySeasonStats("EPL Season 18-19", season_1819_sorted) # Print the Sorted EPL Season 18-19 Dictionary
 
-# Step 5 - Compare Actual Ranking of Teams in E.O.S Leaderboard 
-# VS The Ranking of Teams at E.O.S Leaderboard (Sorted by Avg. GPG + G.D.)
-
-# Function to compare each season's league winner to each season's
-# team with the highest avg. goals per game
-def displayComparison(eos_season_dict, sorted_season_dict):
-	count_same_ranking = 0
-	count_different_ranking = 0
-
-	# Get the keys of the passed season's dictionary
-	# The order of the keys is also the ranking of the teams after sorted by 
-	# Avg. goals per game and goal difference
-	sorted_season_key_list = list(season_dict.keys())
-	eos_season_key_list = list(eos_season0910_leaderboard.keys())
-
-	for i in range(20):
-		eos_ranking = eos_season0910_leaderboard[eos_season_key_list[i]]
-		sorted_season_ranking = sorted_season_key_list[i]
-
-		if eos_ranking == sorted_season_ranking:
-			count_same_ranking += 1
-		else: 
-			count_different_ranking += 1
-
-	difference_in_tables = (count_same_ranking / 20) * 100
-	print("After comparing the E.O.S. Leaderboard and the Sorted Season Leaderboards")
-	print("Only ", '{0:.2f}%'.format(difference_in_tables), " of teams had the same positioning on both leaderboards.")
 
 # Function to read the data in the E.O.S Leaderboard text files for Seasons 09-10 to 18-19
 # and create dictionaries of the leaderboards
@@ -232,7 +205,6 @@ def createEOSSeasonDict(filename):
 		ranking, team = line.strip().split(" ")
 		eos_season_leaderboard[ranking] = team
 
-	
 	#Remove '-' character from team name
 	for key in eos_season_leaderboard.keys():
 		team = eos_season_leaderboard[key]
@@ -242,23 +214,83 @@ def createEOSSeasonDict(filename):
 	return eos_season_leaderboard
 
 
+# Function to compare each season's league winner to each season's
+# team with the highest avg. goals per game
+# Return the percentage value of the comparison between tables
+def displayComparison(season_title, eos_season_dict, sorted_season_dict):
+	count_same_ranking = 0
+	count_different_ranking = 0
+
+	# Get the keys of the passed season's dictionary
+	# The order of the keys is also the ranking of the teams after sorted by 
+	# Avg. goals per game and goal difference
+	sorted_season_key_list = list(sorted_season_dict.keys())
+	eos_season_key_list = list(eos_season_dict.keys())
+
+	# COMPARISON TABLE HEADER
+	print("")
+	print("-" * 57)
+	print("|", " "*16, season_title, " "*19, "|")
+	print("| COMPARISON OF EOS LEADERBOARD AND SORTED LEADERBOARD  |")
+	print("-" * 57)
+	print("| PLACE | EOS LEADERBOARD | SORTED LEADERBOARD | RESULT |")
+	print("-" * 57)
+
+	for i in range(20):
+		eos_ranking = eos_season_dict[eos_season_key_list[i]]
+		sorted_season_ranking = sorted_season_key_list[i]
+		result = ""
+
+		if eos_ranking == sorted_season_ranking:
+			result = "SAME"
+			count_same_ranking += 1
+		else: 
+			result = "DIFF"
+			count_different_ranking += 1
+
+		#COMPARISON TABLE ROW
+		print('| {0:5d} | {1:15s} | {2:18s} | {3:6s} |'.format(i+1, eos_ranking, sorted_season_ranking, result))
+		print("-" * 57)
+
+	difference_in_tables = (count_same_ranking / 20) * 100
+	print("After comparing the E.O.S. Leaderboard and the Sorted Season Leaderboards")
+	print("Only ", '{0:.2f}%'.format(difference_in_tables), " of teams had the same positioning on both leaderboards.")
+	print("")
+
+	return difference_in_tables
+
+# Step 5 - Compare Actual Ranking of Teams in E.O.S Leaderboard 
+# VS The Ranking of Teams at E.O.S Leaderboard (Sorted by Avg. GPG + G.D.)
+
 # EPL Season 09-10 
 eos_season0910_leaderboard = createEOSSeasonDict("eos_season0910_leaderboard.txt")
+eos_season0910_comparison = displayComparison("EPL SEASON 09-10", eos_season0910_leaderboard, season_0910_sorted)
 # EPL Season 10-11
 eos_season1011_leaderboard = createEOSSeasonDict("eos_season1011_leaderboard.txt")
+eos_season1011_comparison = displayComparison("EPL SEASON 10-11", eos_season1011_leaderboard, season_1011_sorted)
 # EPL Season 11-12
 eos_season1112_leaderboard = createEOSSeasonDict("eos_season1112_leaderboard.txt")
+eos_season1112_comparison = displayComparison("EPL SEASON 11-12", eos_season1112_leaderboard, season_1112_sorted)
 # EPL Season 12-13
 eos_season1213_leaderboard = createEOSSeasonDict("eos_season1213_leaderboard.txt")
+eos_season1213_comparison = displayComparison("EPL SEASON 12-13", eos_season1213_leaderboard, season_1213_sorted)
 # EPL Season 13-14
 eos_season1314_leaderboard = createEOSSeasonDict("eos_season1314_leaderboard.txt")
+eos_season1314_comparison = displayComparison("EPL SEASON 13-14", eos_season1314_leaderboard, season_1314_sorted)
 # EPL Season 14-15
 eos_season1415_leaderboard = createEOSSeasonDict("eos_season1415_leaderboard.txt")
+eos_season1415_comparison = displayComparison("EPL SEASON 14-15", eos_season1415_leaderboard, season_1415_sorted)
 # EPL Season 15-16
 eos_season1516_leaderboard = createEOSSeasonDict("eos_season1516_leaderboard.txt")
+eos_season1516_comparison = displayComparison("EPL SEASON 15-16", eos_season1516_leaderboard, season_1516_sorted)
 # EPL Season 16-17
 eos_season1617_leaderboard = createEOSSeasonDict("eos_season1617_leaderboard.txt")
+eos_season1617_comparison = displayComparison("EPL SEASON 16-17", eos_season1617_leaderboard, season_1617_sorted)
 # EPL Season 17-18
 eos_season1718_leaderboard = createEOSSeasonDict("eos_season1718_leaderboard.txt")
+eos_season1718_comparison = displayComparison("EPL SEASON 17-18", eos_season1718_leaderboard, season_1718_sorted)
 # EPL Season 18-19
 eos_season1819_leaderboard = createEOSSeasonDict("eos_season1819_leaderboard.txt")
+eos_season1819_comparison = displayComparison("EPL SEASON 18-19", eos_season1819_leaderboard, season_1819_sorted)
+
+
