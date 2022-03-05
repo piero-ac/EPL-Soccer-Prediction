@@ -350,7 +350,7 @@ for i in range(len(seasons_percent_difference)):
 
 mean_percent_difference = sum_of_percents / 10
 
-print("FINAL RESULT")
+print("*FINAL RESULT*")
 print("After comparing the E.O.S Leaderboard and Sorted Season Leaderboard of Seasons")
 print("09-10, 10-11, 11-12, 12-13, 13-14, 14-15, 15-16, 16-17, 17-18, and 18-19")
 print("The MEAN PERCENT DIFFERENCE of the leaderboards was ", '{0:.2f}%'.format(mean_percent_difference))
