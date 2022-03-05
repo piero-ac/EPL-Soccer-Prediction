@@ -25,10 +25,14 @@ df_1819 = pd.read_csv("season_1819.csv", index_col=0)
 #Function to create lists of the teams that played in each season
 def createTeamNamesList(df, df_length):
 	team_list = []
+	# Traverse each row in the data frame
 	for i in range(df_length):
+		# Get the team name from the home team column
 		team_name = df.iat[i, 1]
+		# If team name is not in team list, add the team name to list 
 		if team_name not in team_list:
 			team_list.append(team_name)
+	#Return list
 	return team_list
 
 """
